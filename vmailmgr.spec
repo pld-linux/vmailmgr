@@ -1,3 +1,4 @@
+%include	/usr/lib/rpm/macros.python
 Summary:	Simple virtualizing POP3 password interface
 Summary(pl):	Prosty interfejs wirtualizuj±cy do POP3
 Name:		vmailmgr
