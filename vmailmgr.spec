@@ -1,13 +1,12 @@
+Summary:	Simple virtualizing POP3 password interface
 Name:		vmailmgr
 Version:	0.96.1
 Release:	1
 Group:		Utilities/System
-URL:		http://em.ca/~bruceg/vmailmgr/
 License:	GPL
 Source:		http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	vmailmgr.initd
-Summary:	Simple virtualizing POP3 password interface
-Packager:	Bruce Guenter <bruceg@em.ca>
+URL:		http://em.ca/~bruceg/vmailmgr/
 Buildroot:	/tmp/%{name}-%{version}-root
 Obsoletes:	checkvpw
 
@@ -20,6 +19,7 @@ virtual domain and a set of tools to manage such a domain.
 Summary:	CGI applications for vmailmgr
 Group:		Utilities/System
 Requires:	vmailmgr-daemon = %{PACKAGE_VERSION}
+
 %description cgi
 This package contains CGI applications to allow web-based administration of 
 vmailmgr systems.   
@@ -27,6 +27,7 @@ vmailmgr systems.
 %package daemon
 Summary:	Vmailmgr daemon for CGIs
 Group:		Utilities/System
+
 %description daemon
 This package contains the vmailmgrd daemon that provides virtual domain 
 manipulation services to support unprivileged clients like CGIs.   
@@ -36,6 +37,7 @@ Summary:	Python modules and CGIs for vmailmgr
 Group:		Utilities/System
 Requires:	python >= 1.5
 Requires:	vmailmgr-daemon = %{PACKAGE_VERSION}
+
 %description python
 This package contains vmailmgr code written in/for Python, including one 
 CGI.   
@@ -78,7 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 if [ -f /var/lock/subsys/vmailmgrd ]; then
 	/etc/rc.d/init.d/vmailmgrd restart >&2
 else
-	echo "Run \"/etc/rc.d/init.d/vmailmgrd start\" to start dhcrelay daemon."
+	echo "Run \"/etc/rc.d/init.d/vmailmgrd start\" to start vmailmgrd daemon."
 fi
 
 %preun daemon
@@ -93,7 +95,7 @@ fi
 %doc doc/*.html
 %attr(644,root,root) %{_bindir}/*
 %attr(755,root,root) %dir /etc/vmailmgr
-%attr(644,root,root) %config(missingok noreplace)  %verify(not size mtime md5) /etc/vmailmgr/*
+%config(missingok noreplace)  %verify(not size mtime md5) /etc/vmailmgr/*
 %{_mandir}/man[1578]/*
 
 %files cgi
