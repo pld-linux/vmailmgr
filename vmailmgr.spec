@@ -12,8 +12,8 @@ Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	c8d2bb288eeacb799985e8af2c7101c1
 Source1:	%{name}.init
 Source2:	%{name}-qpop.inetd
-Source3:	http://mricon.com/SM/guide/qvcs-guide.html
-# Source3-md5:	7a5c19c12c1b8344f35d506b9c116e4d
+#Source3:	http://mricon.com/SM/guide/qvcs-guide.html
+Source3:	qvcs-guide.html
 #URL:		http://em.ca/~bruceg/vmailmgr/
 BuildRequires:	autoconf
 BuildRequires:	automake
