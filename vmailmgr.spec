@@ -116,7 +116,7 @@ fi
 
 %files php
 %defattr(644,root,root,755)
-/home/httpd/cgi-bin/*
+/home/httpd/php/*
 
 %files daemon
 %defattr(644,root,root,755)
