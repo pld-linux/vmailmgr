@@ -81,7 +81,7 @@ domenami wirtualnymi nieuprzywilejowanym klientom, takim jak CGI.
 Summary:	Python modules and CGIs for vmailmgr
 Summary(pl):	Modu³y pythona i CGI do vmailmgr
 Group:		Applications/System
-%requires_eq	python
+%pyrequires_eq	python
 Requires:	vmailmgr-daemon = %{version}
 
 %description python
