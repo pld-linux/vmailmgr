@@ -50,13 +50,13 @@ LDFLAGS="-s"
 %configure
 
 %build
-make all
+%{__make} all
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{var/log/vmailmgrd,etc/{rc.d/init.d,vmailmgr}}
 
-make install DESTDIR=$RPM_BUILD_ROOT \
+%{__make} install DESTDIR=$RPM_BUILD_ROOT \
 	cgidir=/home/httpd/cgi-bin \
 	pythonlibdir=%{_libdir}/python1.5
 
