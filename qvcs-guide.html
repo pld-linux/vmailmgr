@@ -1,0 +1,2232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--Converted with LaTeX2HTML 2K.1beta (1.50)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+
+    <title>Qmail-Vmailmgr-Courier-SquirrelMail Installation
+    Guide</title>
+    <meta name="description" content=
+    "Qmail-Vmailmgr-Courier-SquirrelMail Installation Guide">
+    <meta name="keywords" content="qvcs-guide">
+    <meta name="resource-type" content="document">
+    <meta name="distribution" content="global">
+    <meta http-equiv="Content-Type" content=
+    "text/html; charset=iso-8859-1">
+    <meta name="Generator" content="LaTeX2HTML v2K.1beta">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <link rel="STYLESHEET" href="qvcs-guide.css">
+  </head>
+
+  <body>
+    <h1 align="CENTER">Qmail-Vmailmgr-Courier-SquirrelMail
+    Installation Guide</h1>
+
+    <p align="CENTER"><strong>Konstantin Riabitsev<br>
+     icon@mricon.com</strong></p>
+
+    <p align="CENTER"><strong>Version 0.99.1: April 9,
+    2k1</strong></p>
+
+    <h3>Abstract:</h3>
+
+    <div class="ABSTRACT">
+      This document is useful for people who are looking to set up
+      an e-mail system with an easy-to-use client webmail front end
+      and support for name-based virtual domains. It proposes a
+      Qmail-Vmailmgr-Courier-SquirrelMail tie-in as the best small
+      to mid-class server solution. Latest version of this document
+      can be found at http://www.mricon.com/SM/guide.
+    </div>
+    <br>
+    <br>
+     
+
+    <h2><a name="SECTION00010000000000000000">Contents</a></h2>
+    <!--Table of Contents-->
+
+    <ul class="TofC">
+      <li><a name="tex2html72" href="qvcs-guide.html">The
+      problem</a></li>
+
+      <li>
+        <a name="tex2html73" href=
+        "#SECTION00030000000000000000">The Software</a> 
+
+        <ul>
+          <li><a name="tex2html74" href=
+          "#SECTION00031000000000000000">Operating System
+          Software</a></li>
+
+          <li><a name="tex2html75" href=
+          "#SECTION00032000000000000000">Linux users</a></li>
+
+          <li><a name="tex2html76" href=
+          "#SECTION00033000000000000000">Stuff You Will
+          Need</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html77" href=
+        "#SECTION00040000000000000000">Setting up Qmail</a> 
+
+        <ul>
+          <li><a name="tex2html78" href=
+          "#SECTION00041000000000000000">Preparing the
+          scene</a></li>
+
+          <li><a name="tex2html79" href=
+          "#SECTION00042000000000000000">Compiling</a></li>
+
+          <li><a name="tex2html80" href=
+          "#SECTION00043000000000000000">Configuring qmail</a></li>
+
+          <li><a name="tex2html81" href=
+          "#SECTION00044000000000000000">Setting the sendmail
+          wrapper</a></li>
+
+          <li><a name="tex2html82" href=
+          "#SECTION00045000000000000000">Startup scripts</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html83" href=
+        "#SECTION00050000000000000000">Setting up ucspi-tcp</a> 
+
+        <ul>
+          <li><a name="tex2html84" href=
+          "#SECTION00051000000000000000">Compiling
+          ucspi-tcp</a></li>
+
+          <li><a name="tex2html85" href=
+          "#SECTION00052000000000000000">Setting up
+          tcprules</a></li>
+
+          <li><a name="tex2html86" href=
+          "#SECTION00053000000000000000">Running tcpserver for
+          SMTP</a></li>
+
+          <li><a name="tex2html87" href=
+          "#SECTION00054000000000000000">Checking to see if it
+          worked</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li><a name="tex2html88" href=
+      "#SECTION00060000000000000000">Useful Pointers for Qmail and
+      Tcpserver</a></li>
+
+      <li>
+        <a name="tex2html89" href=
+        "#SECTION00070000000000000000">Configuring VmailMgr</a> 
+
+        <ul>
+          <li><a name="tex2html90" href=
+          "#SECTION00071000000000000000">Building and installing
+          VmailMgr</a></li>
+
+          <li><a name="tex2html91" href=
+          "#SECTION00072000000000000000">Configuring Virtual
+          Domains</a></li>
+
+          <li><a name="tex2html92" href=
+          "#SECTION00073000000000000000">add_virt shell
+          script</a></li>
+
+          <li><a name="tex2html93" href=
+          "#SECTION00074000000000000000">remove_virt shell
+          script</a></li>
+
+          <li><a name="tex2html94" href=
+          "#SECTION00075000000000000000">DNS settings</a></li>
+
+          <li><a name="tex2html95" href=
+          "#SECTION00076000000000000000">Done</a></li>
+
+          <li><a name="tex2html96" href=
+          "#SECTION00077000000000000000">Creating a sample
+          user</a></li>
+
+          <li><a name="tex2html97" href=
+          "#SECTION00078000000000000000">Setting qmail system
+          aliases</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html98" href=
+        "#SECTION00080000000000000000">Configuring a POP3
+        server</a> 
+
+        <ul>
+          <li><a name="tex2html99" href=
+          "#SECTION00081000000000000000">Taking care of
+          inetd</a></li>
+
+          <li><a name="tex2html100" href=
+          "#SECTION00082000000000000000">Tcpserver config
+          line</a></li>
+
+          <li><a name="tex2html101" href=
+          "#SECTION00083000000000000000">Testing if everything
+          worked</a></li>
+
+          <li><a name="tex2html102" href=
+          "#SECTION00084000000000000000">Vmailmgr login
+          usernames</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html103" href=
+        "#SECTION00090000000000000000">Configuring Courier-IMAP</a>
+        
+
+        <ul>
+          <li><a name="tex2html104" href=
+          "#SECTION00091000000000000000">Building and
+          installing</a></li>
+
+          <li><a name="tex2html105" href=
+          "#SECTION00092000000000000000">Configuring
+          Courier-IMAP</a></li>
+
+          <li><a name="tex2html106" href=
+          "#SECTION00093000000000000000">Starting
+          Courier-IMAP</a></li>
+
+          <li><a name="tex2html107" href=
+          "#SECTION00094000000000000000">Testing your
+          setup</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html108" href=
+        "#SECTION000100000000000000000">Configuring Apache</a> 
+
+        <ul>
+          <li><a name="tex2html109" href=
+          "#SECTION000101000000000000000">Packaged stuff</a></li>
+
+          <li><a name="tex2html110" href=
+          "#SECTION000102000000000000000">Compiling and installing
+          Apache</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html111" href=
+        "#SECTION000110000000000000000">Configuring PHP</a> 
+
+        <ul>
+          <li><a name="tex2html112" href=
+          "#SECTION000111000000000000000">Compiling and installing
+          PHP</a></li>
+
+          <li><a name="tex2html113" href=
+          "#SECTION000112000000000000000">Symlinking</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html114" href=
+        "#SECTION000120000000000000000">Setting up SquirrelMail</a>
+        
+
+        <ul>
+          <li><a name="tex2html115" href=
+          "#SECTION000121000000000000000">Untarring and setting up
+          directories.</a></li>
+
+          <li><a name="tex2html116" href=
+          "#SECTION000122000000000000000">Configuring
+          SquirrelMail</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html117" href=
+        "#SECTION000130000000000000000">Making Apache, PHP, and
+        SquirrelMail work together.</a> 
+
+        <ul>
+          <li><a name="tex2html118" href=
+          "#SECTION000131000000000000000">Minimalistic
+          configuration</a></li>
+
+          <li><a name="tex2html119" href=
+          "#SECTION000132000000000000000">Other possible
+          configurations</a></li>
+
+          <li><a name="tex2html120" href=
+          "#SECTION000133000000000000000">SquirrelMail
+          plugins</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html121" href=
+        "#SECTION000140000000000000000">Administration
+        Front-end</a> 
+
+        <ul>
+          <li><a name="tex2html122" href=
+          "#SECTION000141000000000000000">Getting things you
+          need</a></li>
+
+          <li><a name="tex2html123" href=
+          "#SECTION000142000000000000000">Installing
+          Ucspi-unix</a></li>
+
+          <li><a name="tex2html124" href=
+          "#SECTION000143000000000000000">Installing
+          libmcrypt</a></li>
+
+          <li><a name="tex2html125" href=
+          "#SECTION000144000000000000000">Running
+          vmailmgrd</a></li>
+
+          <li><a name="tex2html126" href=
+          "#SECTION000145000000000000000">Vmailmgr Admin plugin for
+          SquirrelMail</a></li>
+
+          <li><a name="tex2html127" href=
+          "#SECTION000146000000000000000">Adding domains to
+          Vadmin</a></li>
+
+          <li><a name="tex2html128" href=
+          "#SECTION000147000000000000000">Adding more
+          domains</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li>
+        <a name="tex2html129" href=
+        "#SECTION000150000000000000000">Finalizing it all</a> 
+
+        <ul>
+          <li><a name="tex2html130" href=
+          "#SECTION000151000000000000000">Why this is not
+          recommended for large systems</a></li>
+
+          <li><a name="tex2html131" href=
+          "#SECTION000152000000000000000">Corrections and
+          Comments</a></li>
+
+          <li><a name="tex2html132" href=
+          "#SECTION000153000000000000000">Thank you and good luck!
+          ;)</a></li>
+        </ul>
+        <br>
+      </li>
+
+      <li><a name="tex2html133" href=
+      "#SECTION000160000000000000000">About this document
+      ...</a></li>
+    </ul>
+    <!--End of Table of Contents-->
+
+    <h1><a name="SECTION00020000000000000000">The problem</a></h1>
+    Say, you are looking to start your own small-to-medium hosting
+    business and you need to come up with the best solution for an
+    e-mail server. The things you are looking for are: 
+
+    <ul>
+      <li>Security</li>
+
+      <li>Reliability</li>
+
+      <li>Lax hardware requirements</li>
+
+      <li>Support for many virtual hosts, all sitting on one IP
+      address (name-based hosting)</li>
+
+      <li>SMTP relaying for your clients</li>
+
+      <li>POP3 and IMAP mailbox access</li>
+
+      <li>A nice webmail front-end for your clients</li>
+    </ul>
+    I was facing the same problem and I have found that one of the
+    best solutions would be to use
+    Qmail-Courier-Vmailmgr-SquirrelMail tie-in. It is very easy to
+    configure, runs very reliably, and has very good security
+    features. 
+
+    <h1><a name="SECTION00030000000000000000">The Software</a></h1>
+
+    <h2><a name="SECTION00031000000000000000">Operating System
+    Software</a></h2>
+
+    <p>Everything we are going to use can be configured on almost
+    any UN*X system out there. I've had this setup running smoothly
+    on Linux, FreeBSD, and OpenBSD. I am going to recommend using
+    OpenBSD for this solution, but it doesn't really matter which
+    UN*X system you are running. Whichever you are more comfortable
+    with - that's the one you should use. I am going to write this
+    document as if you had a BSD-like system (any BSD distribution,
+    Linux Slackware, and others). If you have a Linux RedHat-like
+    system with sysv-style init scripts, the difference would be in
+    where you put your startup scripts. The only requirement is
+    having common GNU tools installed, like GNU make, GNU tar, GNU
+    grep, and etc.</p>
+
+    <p>This document assumes that you have successfully configured
+    your system and are ready to put the e-mail stuff on it. I will
+    not mention things like DNS/MX settings - other documents cover
+    this topic better.</p>
+
+    <h2><a name="SECTION00032000000000000000">Linux users</a></h2>
+
+    <p>If you are going to be using a package-based Linux system,
+    e.g. Debian, RedHat, SuSE, or others, and prefer to install RPM
+    or DEB files rather than build everything from the sources, you
+    are encouraged to check out Dan Kuykendall's
+    Qmail-Vmailmgr-Courier-imap HOWTO at Linux Documentation
+    Project. The HOWTO covers installation and configuration of
+    Qmail, Vmailmgr, and Courier-IMAP on Linux and provides links
+    to where you may find pre-built binary packages.</p>
+
+    <p>You may find that document at the following address:<br>
+     <tt>http://linuxdoc.org/HOWTO/Qmail-VMailMgr-Courier-imap-HOWTO.html</tt></p>
+
+    <h2><a name="SECTION00033000000000000000">Stuff You Will
+    Need</a></h2>
+
+    <p>This shows latest versions at the time of writing. If newer
+    versions are available, you should probably get them.</p>
+
+    <ul>
+      <li>qmail-1.03 (http://www.qmail.org/)</li>
+
+      <li>ucspi-tcp-0.88 (http://cr.yp.to/)</li>
+
+      <li>courier-imap-1.3.5 (http://www.courier-mta.org/)</li>
+
+      <li>vmailmgr-0.96-9 (http://www.vmailmgr.org/)</li>
+
+      <li>apache-1.3.19 (http://httpd.apache.org/)</li>
+
+      <li>php-4.0.4pl1 (http://www.php.net/)</li>
+
+      <li>SquirrelMail-1.0.3 (http://www.squirrelmail.org/)</li>
+    </ul>
+
+    <h1><a name="SECTION00040000000000000000">Setting up
+    Qmail</a></h1>
+
+    <p>Setting up Qmail is rather trivial, but here are most basic
+    steps you need to take.</p>
+
+    <h2><a name="SECTION00041000000000000000">Preparing the
+    scene</a></h2>
+
+    <p>Before you do anything, you will need to remove any traces
+    of Sendmail from your system. If you're running an RPM-based
+    linux distribution, do it by executing:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;rpm&nbsp;-e&nbsp;--nodeps&nbsp;sendmail</dd>
+    </dl>
+    On BSD-based systems use <span class="textbf">pkg_delete</span>
+    or similar scripts. 
+
+    <p>Next, create a <tt>/var/qmail</tt> directory. You need to
+    remember, that this is where qmail will store its queued
+    e-mail, so if you want to be ready for some big traffic
+    (remember the iloveyou!), you might want to make sure you have
+    a reasonable amount of space available on this partition.</p>
+
+    <p>Qmail has very tight security features, and it achieves them
+    by using six separate user accounts to process all the mail.
+    You will need to create them before you can compile and install
+    qmail. Do this by executing the following commands:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;groupadd&nbsp;-g&nbsp;1000&nbsp;nofiles&nbsp;<br>
+
+       root@mail:#&nbsp;useradd&nbsp;-u&nbsp;5000&nbsp;-g&nbsp;nofiles&nbsp;-d&nbsp;/var/qmail/alias&nbsp;alias&nbsp;<br>
+
+       root@mail:#&nbsp;useradd&nbsp;-u&nbsp;5001&nbsp;-g&nbsp;nofiles&nbsp;-d&nbsp;/var/qmail&nbsp;qmaild&nbsp;<br>
+
+       root@mail:#&nbsp;useradd&nbsp;-u&nbsp;5002&nbsp;-g&nbsp;nofiles&nbsp;-d&nbsp;/var/qmail&nbsp;qmaill&nbsp;<br>
+
+       root@mail:#&nbsp;useradd&nbsp;-u&nbsp;5003&nbsp;-g&nbsp;nofiles&nbsp;-d&nbsp;/var/qmail&nbsp;qmailp&nbsp;<br>
+
+       root@mail:#&nbsp;groupadd&nbsp;-g&nbsp;1001&nbsp;qmail&nbsp;<br>
+
+       root@mail:#&nbsp;useradd&nbsp;-u&nbsp;5004&nbsp;-g&nbsp;qmail&nbsp;-d&nbsp;/var/qmail&nbsp;qmailq&nbsp;<br>
+
+       root@mail:#&nbsp;useradd&nbsp;-u&nbsp;5005&nbsp;-g&nbsp;qmail&nbsp;-d&nbsp;/var/qmail&nbsp;qmailr&nbsp;<br>
+
+       root@mail:#&nbsp;useradd&nbsp;-u&nbsp;5006&nbsp;-g&nbsp;qmail&nbsp;-d&nbsp;/var/qmail&nbsp;qmails</dd>
+    </dl>
+    Of course, you can add them by editing the <tt>/etc/passwd</tt>
+    file, or running <span class="textbf">vipw</span> on BSD
+    systems. 
+
+    <h2><a name="SECTION00042000000000000000">Compiling</a></h2>
+
+    <p>Now that you have created the necessary users and made sure
+    you have a sensible amount of free space in
+    <tt>/var/qmail</tt>, you are ready to compile and install. This
+    is very trivial and takes no time at all.</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;tar&nbsp;xzvf&nbsp;qmail-1.03.tar.gz&nbsp;<br>
+
+       root@mail:#&nbsp;cd&nbsp;qmail-1.03&nbsp;<br>
+       root@mail:#&nbsp;make&nbsp;&amp;&amp;&nbsp;make&nbsp;setup&nbsp;check</dd>
+    </dl>
+    If everything compiled without errors (which it should have),
+    you are ready to configure qmail. 
+
+    <h2><a name="SECTION00043000000000000000">Configuring
+    qmail</a></h2>
+
+    <p>For the sake of providing examples I am going to assume that
+    your hostname is ``<span class=
+    "textbf">mail.dexterslab.net</span>''.</p>
+
+    <p>Go to <tt>/var/qmail/control</tt> directory:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;cd&nbsp;/var/qmail/control&nbsp;<br>
+       root@mail:#&nbsp;echo&nbsp;mail.dexterslab.net&nbsp;&gt;&nbsp;me&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;mail.dexterslab.net&nbsp;&gt;&nbsp;defaultdomain&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;mail.dexterslab.net&nbsp;&gt;&nbsp;rcpthosts&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;mail.dexterslab.net&nbsp;&gt;&nbsp;locals&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;mail.dexterslab.net&nbsp;&gt;&nbsp;plusdomain&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;localhost&nbsp;&gt;&gt;&nbsp;locals&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;localhost&nbsp;&gt;&gt;&nbsp;rcpthosts</dd>
+    </dl>
+    This covers the basic installation. We will get to virtual
+    domains setup at a later step, since it's much easier done with
+    a simple script, than by hand. 
+
+    <h2><a name="SECTION00044000000000000000">Setting the sendmail
+    wrapper</a></h2>
+
+    <p>Since most systems cannot function without sendmail, qmail
+    provides a sendmail wrapper. To activate it do this:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;ln&nbsp;-s&nbsp;/var/qmail/bin/sendmail&nbsp;/usr/lib/sendmail&nbsp;<br>
+
+       root@mail:#&nbsp;ln&nbsp;-s&nbsp;/var/qmail/bin/sendmail&nbsp;/usr/sbin/sendmail</dd>
+    </dl>
+    This should make every program totally oblivious to the fact
+    that you're not really using sendmail any more. 
+
+    <h2><a name="SECTION00045000000000000000">Startup
+    scripts</a></h2>
+
+    <p>Go to <tt>/var/qmail/boot</tt>, find the file called
+    ``<tt>home</tt>'' and move it to <tt>/var/qmail/rc</tt>.</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;cd&nbsp;/var/qmail/boot&nbsp;<br>
+       root@mail:#&nbsp;mv&nbsp;home&nbsp;../rc</dd>
+    </dl>
+    To run qmail all you have to do is execute: 
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;/var/qmail/rc&nbsp;&amp;</dd>
+    </dl>
+    To have it started automatically you need to put ``<span class=
+    "textbf">/var/qmail/rc &amp;</span>'' into your
+    <tt>/etc/rc.local</tt> file.<a name="tex2html1" href=
+    "#foot600"><sup><span class="arabic">1</span></sup></a> 
+
+    <p>After the machine is done booting, make sure your qmail is
+    running by executing:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;ps&nbsp;auxww&nbsp;|&nbsp;grep&nbsp;qmail</dd>
+    </dl>
+    and find the ``<tt>qmail-lspawn</tt>'' process together with a
+    few others. Test the system by sending a simple message like: 
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;uname&nbsp;-a&nbsp;|&nbsp;mail&nbsp;dexter@remoteserver.com</dd>
+    </dl>
+    Check your remote server and make sure you have received this
+    e-mail. If something didn't work, check your
+    <tt>/var/log/mail</tt> or <tt>/var/log/maillog</tt> or
+    <tt>/var/log/messages</tt> (whichever) for a possible
+    explanation. Sorry, troubleshooting is out of the scope of this
+    document. Visit www.qmail.org for any support you need. 
+
+    <h1><a name="SECTION00050000000000000000">Setting up
+    ucspi-tcp</a></h1>
+
+    <p>Your mail server is no good if it can't accept SMTP
+    connections. This is best done by using the ucspi-tcp package
+    available from the same developers who wrote qmail.</p>
+
+    <h2><a name="SECTION00051000000000000000">Compiling
+    ucspi-tcp</a></h2>
+
+    <p>No sweat, as always. Simply do:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;tar&nbsp;xzvf&nbsp;ucspi-tcp-0.88.tar.gz&nbsp;<br>
+
+       root@mail:#&nbsp;cd&nbsp;ucspi-tcp-0.88&nbsp;<br>
+       root@mail:#&nbsp;make&nbsp;&amp;&amp;&nbsp;make&nbsp;setup&nbsp;check</dd>
+    </dl>
+    This will compile and install ucspi-tcp files in your
+    <tt>/usr/local</tt> directory. 
+
+    <h2><a name="SECTION00052000000000000000">Setting up
+    tcprules</a></h2>
+
+    <p>We want to make sure that nobody but our own clients are
+    able to use our server to send outgoing mail. Otherwise we will
+    have what is called an ``open relay'' - everyone will hate us
+    and we'll end up on various spam blacklists. Not something we
+    want.</p>
+
+    <p>To enable ``selective relaying'', we need to create a file
+    called <tt>/etc/tcp.smtp</tt>. In this file we need to put
+    something like this:</p>
+
+    <dl compact>
+      <dd>192.168.1.:allow,RELAYCLIENT=''<br>
+       :allow</dd>
+    </dl>
+    What this does is instructs qmail that it should allow outgoing
+    e-mail only for people connecting from our subnet, which in
+    this case is <tt>192.168.1.0/24</tt>. You, of course, will need
+    to change it to your own subnet if you want this to work. You
+    may add as many subnets in, following the given example and
+    putting each on a separate line, to make sure that all your
+    clients are covered. Don't forget the last <tt>:allow</tt> on
+    the line, or we won't accept any incoming mail for our clients
+    either. 
+
+    <p>Once your <tt>/etc/tcp.smtp</tt> file is completed, you will
+    need to compile it so it's ready to be used. Do this by
+    executing:<a name="tex2html2" href="#foot605"><sup><span class=
+    "arabic">2</span></sup></a></p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;tcprules&nbsp;/etc/tcp.smtp.cdb&nbsp;\<br>
+       /etc/tcp.smtp.tmp&nbsp;&lt;&nbsp;/etc/tcp.smtp</dd>
+    </dl>
+    The command will compile your rules and put them in a binary
+    file <tt>/etc/tcp.smtp.cdb</tt> (you might want to make sure
+    <tt>/usr/local/bin</tt> is in your <tt>$PATH</tt>). Remember
+    that you will need to recompile the rules if you add any more
+    subnets in. I found it useful to use this no-brain script
+    whenever I needed to edit the rules: 
+
+    <dl compact>
+      <dd>-begin&nbsp;/usr/local/bin/tcprulesedit-&nbsp;<br>
+       #!/bin/sh&nbsp;<br>
+       vi&nbsp;/etc/tcp.smtp&nbsp;<br>
+       /usr/local/bin/tcprules&nbsp;/etc/tcp.smtp.cdb&nbsp;\&nbsp;<br>
+
+       /etc/tcp.smtp.tmp&nbsp;&lt;&nbsp;/etc/tcp.smtp&nbsp;<br>
+       -end&nbsp;/usr/local/bin/tcprulesedit-</dd>
+    </dl>
+    Now editing rules is as simple as running <span class=
+    "textbf">tcprulesedit</span>. 
+
+    <p>(You may wish to use other editor, not <span class=
+    "textbf">vi</span>, if you are not comfortable with it).</p>
+
+    <h2><a name="SECTION00053000000000000000">Running tcpserver for
+    SMTP</a></h2>
+
+    <p>Running tcpserver is no easy task. ;) Well, it is, it just
+    needs to be put in a nice script. The command line to execute
+    tcpserver looks like this:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;/usr/local/bin/tcpserver&nbsp;-x/etc/tcp.smtp.cdb&nbsp;\<br>
+
+       -u5002&nbsp;-g1000&nbsp;0&nbsp;smtp&nbsp;/var/qmail/bin/qmail-smtpd&nbsp;\<br>
+
+       2&gt;&amp;1&nbsp;|&nbsp;/var/qmail/bin/splogger&nbsp;&amp;</dd>
+    </dl>
+    A bit of explanation of what this does.
+    <tt>-x/etc/tcp.smtp.cdb</tt> flag makes sure we use the
+    relaying rules we have just compiled. <tt>-u5002</tt> instructs
+    tcpserver to run as user ``qmaild'' <tt>-g1000</tt> is group
+    ``nofiles'', <tt>0</tt> means that we want tcpserver to listen
+    on all interfaces, <tt>smtp</tt> means we want it to bind to
+    port 25 (the standard SMTP port used for mail exchange),
+    <tt>/var/qmail/bin/qmail-smtpd</tt> instructs the tcpserver to
+    run qmail-smtpd program after establishing connection,
+    <tt>2&gt;&amp;1</tt> makes sure there isn't any garbage spewing
+    onto the console and it all goes into the logs, and
+    <tt>/var/qmail/bin/splogger</tt> makes certain we put stuff in
+    <tt>/var/log/maillog</tt>. Quite simple, really. 
+
+    <p>Since we are going to be using <span class=
+    "textbf">tcpserver</span> to also run pop3 later, I've found it
+    convenient to create a separate script called ``<span class=
+    "textbf">runmail</span>'' to put all these monstrous lines in.
+    I advise you do the same and put the abovementioned long line
+    in a script <tt>/usr/local/bin/runmail</tt>:</p>
+
+    <dl compact>
+      <dd>-begin&nbsp;/usr/local/bin/runmail-<br>
+       #!/bin/sh&nbsp;<br>
+       /usr/local/bin/tcpserver&nbsp;-x/etc/tcp.smtp.cdb&nbsp;-u5002&nbsp;-g1000&nbsp;\<br>
+
+       0&nbsp;smtp&nbsp;/var/qmail/bin/qmail-smtpd&nbsp;2&gt;&amp;1&nbsp;\<br>
+
+       |&nbsp;/var/qmail/bin/splogger&nbsp;&amp;<br>
+       -end&nbsp;/usr/local/bin/runmail-</dd>
+    </dl>
+    Now all that's left to do is add ``<span class=
+    "textbf">/usr/local/bin/runmail</span>'' line to our
+    <tt>/etc/rc.local</tt> file to make sure that tcpserver is
+    started during the boot-up. Be sure to set execute permissions
+    on <tt>/usr/local/bin/runmail</tt>. 
+
+    <h2><a name="SECTION00054000000000000000">Checking to see if it
+    worked</a></h2>
+
+    <p>Check to see if you have done everything correctly by doing
+    this:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;telnet&nbsp;mail.dexterslab.net&nbsp;smtp</dd>
+    </dl>
+    You should see: 
+
+    <dl compact>
+      <dd>Trying&nbsp;192.168.1.1...<br>
+       Connected&nbsp;to&nbsp;mail.dexterslab.net.<br>
+       Escape&nbsp;character&nbsp;is&nbsp;']'.<br>
+       220&nbsp;mail.dexterslab.net&nbsp;ESMTP</dd>
+    </dl>
+    Try saying hello. Type in 
+
+    <dl compact>
+      <dd>HELO&nbsp;johnnybravo.com</dd>
+    </dl>
+    It should say: 
+
+    <dl compact>
+      <dd>250&nbsp;mail.dexterslab.net</dd>
+    </dl>
+    Type ``quit'' to close connection. We will do serious testing
+    later. 
+
+    <h1><a name="SECTION00060000000000000000">Useful Pointers for
+    Qmail and Tcpserver</a></h1>
+
+    <p>Qmail and tcpserver are a very flexible and extendable
+    combination. You may tweak the system to your liking - visit
+    <span class="textbf">http://www.qmail.org/</span> for a very
+    lengthy list of software and enhancements available. Many
+    end-users like some spam-protection, and although it is not
+    possible to be 100% protected from spam, you may wish to enable
+    MAPS RBL blackhole list of known spammers.</p>
+
+    <p>This is done by adding these flags to your tcpserver startup
+    string:</p>
+
+    <dl compact>
+      <dd>
+      /usr/local/bin/rblsmtpd&nbsp;-b&nbsp;-rrbl.maps.vix.com</dd>
+    </dl>
+    Put it after ``<tt>0 smtp</tt>'' and before you invoke
+    <tt>/var/qmail/bin/qmail-smtpd</tt>. This will first check the
+    sender against a list of known spammers and blackhole the
+    message if it's a known spam source. If you do this, then you
+    should also modify your <tt>/etc/tcp.smtp</tt> rules and make
+    them look like so: 
+
+    <dl compact>
+      <dd>192.168.1.:allow,RELAYCLIENT='',RBLSMTP=''<br>
+       :allow</dd>
+    </dl>
+    This will make sure that bandwidth and resources are not wasted
+    checking your local clients against the list of known spammers
+    (unless any of them happen to be on your subnet, of course). 
+
+    <h1><a name="SECTION00070000000000000000">Configuring
+    VmailMgr</a></h1>
+
+    <p>Get the latest version of vmailmgr from <span class=
+    "textbf">http://www.vmailmgr.org/</span>. At the time of
+    writing it is <tt>vmailmgr-0.96-9.tar.gz</tt>.</p>
+
+    <h2><a name="SECTION00071000000000000000">Building and
+    installing VmailMgr</a></h2>
+
+    <p>Untar the distribution and cd into the
+    <tt>vmailmgr-0.96-9</tt> directory. Now configure and build
+    it:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;./configure<br>
+       root@mail:#&nbsp;make&nbsp;&amp;&amp;&nbsp;make&nbsp;install</dd>
+    </dl>
+    That's it. If you encounter any problems, please refer to help
+    docs and any info on the vmailmgr website, as troubleshooting
+    is out of the scope of this document. 
+
+    <h2><a name="SECTION00072000000000000000">Configuring Virtual
+    Domains</a></h2>
+
+    <p>It is best of all to add and remove virtual domains by using
+    a script, otherwise things get extensively verbose and tedious.
+    Before we start, however, let's create a <tt>/home/dom</tt>
+    directory where we will put all virtual domain directories, and
+    add a ``<span class="textbf">dom</span>'' group. This is done
+    to organize everything nicely.</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;mkdir&nbsp;/home/dom<br>
+       root@mail:#&nbsp;groupadd&nbsp;dom</dd>
+    </dl>
+    Note that <tt>/home/dom</tt> is where all your incoming users'
+    e-mail messages will reside, so depending on how many users you
+    are going to support, you might want to make sure that you have
+    plenty of space on this partition. 
+
+    <h2><a name="SECTION00073000000000000000">add_virt shell
+    script</a></h2>
+
+    <p>Now, here is a script I am using to add virtual domains:</p>
+
+    <dl compact>
+      <dd>-begin&nbsp;/usr/local/bin/add_virt-&nbsp;<br>
+       #!/bin/sh&nbsp;<br>
+       DGID="dom"&nbsp;<br>
+       DHOME="/home/dom"&nbsp;<br>
+       QHOME="/var/qmail"&nbsp;<br>
+       if&nbsp;test&nbsp;$UID&nbsp;!=&nbsp;0&nbsp;;&nbsp;then&nbsp;<br>
+
+       &nbsp;echo&nbsp;"Error:&nbsp;Must&nbsp;be&nbsp;root"&nbsp;&nbsp;<br>
+
+       &nbsp;exit&nbsp;1&nbsp;&nbsp;<br>
+       fi&nbsp;<br>
+       if&nbsp;test&nbsp;!&nbsp;$1;&nbsp;then&nbsp;&nbsp;<br>
+       &nbsp;echo&nbsp;"Usage:&nbsp;add_virt&nbsp;newdomain.com"&nbsp;&nbsp;<br>
+
+       &nbsp;exit&nbsp;1&nbsp;&nbsp;<br>
+       fi&nbsp;<br>
+       if&nbsp;egrep&nbsp;"^$1:"&nbsp;/etc/passwd&nbsp;&gt;&nbsp;/dev/null&nbsp;2&gt;&amp;1;&nbsp;then&nbsp;<br>
+
+       &nbsp;echo&nbsp;"Error:&nbsp;Cannot&nbsp;create&nbsp;domain.&nbsp;Domain&nbsp;exists"&nbsp;<br>
+
+       &nbsp;exit&nbsp;1&nbsp;&nbsp;<br>
+       fi&nbsp;<br>
+       NEWDOM=$1&nbsp;<br>
+       echo&nbsp;"Creating&nbsp;new&nbsp;domain&nbsp;'$NEWDOM'."&nbsp;&nbsp;<br>
+
+       useradd&nbsp;-d&nbsp;$DHOME/$NEWDOM&nbsp;-g&nbsp;$DGID&nbsp;-m&nbsp;$NEWDOM&nbsp;<br>
+
+       echo&nbsp;"Domain&nbsp;holder&nbsp;user&nbsp;created&nbsp;in&nbsp;$DHOME/$NEWDOM."&nbsp;<br>
+
+       echo&nbsp;"Please&nbsp;provide&nbsp;domain&nbsp;password&nbsp;for&nbsp;VmailMgr."&nbsp;<br>
+
+       passwd&nbsp;$NEWDOM&nbsp;<br>
+       echo&nbsp;-n&nbsp;"Adding&nbsp;domain&nbsp;to&nbsp;control/virtualdomains..."&nbsp;<br>
+
+       echo&nbsp;"$NEWDOM:$NEWDOM"&nbsp;&gt;&gt;&nbsp;$QHOME/control/virtualdomains&nbsp;<br>
+
+       echo&nbsp;"done"&nbsp;<br>
+       echo&nbsp;-n&nbsp;"Adding&nbsp;records&nbsp;to&nbsp;control/rcpthosts..."&nbsp;<br>
+
+       echo&nbsp;"$NEWDOM"&nbsp;&gt;&gt;&nbsp;$QHOME/control/rcpthosts&nbsp;<br>
+
+       echo&nbsp;"done"&nbsp;<br>
+       echo&nbsp;"Setting&nbsp;up&nbsp;the&nbsp;domain&nbsp;dir&nbsp;for&nbsp;vmailmgr..."&nbsp;<br>
+
+       su&nbsp;$NEWDOM&nbsp;-c&nbsp;"/usr/local/bin/vsetup"&nbsp;<br>
+
+       echo&nbsp;"...done"&nbsp;<br>
+       echo&nbsp;-n&nbsp;"Restarting&nbsp;Qmail..."&nbsp;<br>
+       killall&nbsp;qmail-lspawn&nbsp;<br>
+       $QHOME/rc&nbsp;&amp;&nbsp;<br>
+       echo&nbsp;<br>
+       echo&nbsp;"All&nbsp;done!&nbsp;Domain&nbsp;$NEWDOM&nbsp;created."&nbsp;<br>
+
+       -end&nbsp;/usr/local/bin/add_virt-</dd>
+    </dl>
+    It is pretty self-explanatory. First few lines setup some
+    variables in case we want to shift things around later. Next,
+    there are a few tests to make sure we have permissions to
+    execute the scripts and add users, and a small test to see if
+    we are trying to add a domain which already exists. 
+
+    <p>Next, we create a domain holder user with the same name as
+    the domain itself. It certainly doesn't have to be this way,
+    but it just makes sense and there isn't a reason not to name
+    them the same. Setting a password is necessary since we will
+    use it for authentication later with vmailmgr's web front-end.
+    Needless to say, this should be a good password, not your dog's
+    name (unless you named it '%AeZ+tk_' or something odd).</p>
+
+    <p>Last few lines add the new domain to qmail's
+    <tt>virtualdomains</tt> and <tt>rcpthosts</tt> files, setup the
+    new directory to be used with vmailmgr, and finally the script
+    restarts qmail so these changes are reflected.<a name=
+    "tex2html3" href="#foot602"><sup><span class=
+    "arabic">3</span></sup></a></p>
+
+    <p>Copy this script into a file in <tt>/usr/local/bin</tt>
+    directory and set permissions to execute. You might want to
+    check if your <tt>/usr/local/bin</tt> is in your <tt>$PATH</tt>
+    if you don't want to type in the full path each time.</p>
+
+    <h2><a name="SECTION00074000000000000000">remove_virt shell
+    script</a></h2>
+
+    <p>Removing domains is also easy with a similar script. Here is
+    what I am using:</p>
+
+    <dl compact>
+      <dd>-begin&nbsp;/usr/local/bin/remove_virt-<br>
+       #!/bin/sh&nbsp;<br>
+       QHOME="/var/qmail"&nbsp;<br>
+       if&nbsp;test&nbsp;$UID&nbsp;!=&nbsp;0&nbsp;;&nbsp;then&nbsp;<br>
+
+       &nbsp;echo&nbsp;"Error:&nbsp;Must&nbsp;be&nbsp;root"&nbsp;<br>
+
+       &nbsp;exit&nbsp;1&nbsp;&nbsp;<br>
+       fi&nbsp;<br>
+       if&nbsp;test&nbsp;!&nbsp;$1;&nbsp;then&nbsp;<br>
+       &nbsp;echo&nbsp;"Usage:&nbsp;remove_virt&nbsp;domain.com"&nbsp;<br>
+
+       &nbsp;exit&nbsp;1&nbsp;&nbsp;<br>
+       fi&nbsp;<br>
+       if&nbsp;egrep&nbsp;"^$1:"&nbsp;/etc/passwd&nbsp;&gt;&nbsp;/dev/null&nbsp;2&gt;&amp;1;&nbsp;then&nbsp;<br>
+
+       &nbsp;echo&nbsp;"This&nbsp;will&nbsp;delete&nbsp;'$1'&nbsp;and&nbsp;all&nbsp;its&nbsp;users."&nbsp;<br>
+
+       &nbsp;echo&nbsp;-n&nbsp;"Proceed?&nbsp;y/[n]:&nbsp;"&nbsp;<br>
+
+       &nbsp;read&nbsp;YN&nbsp;&nbsp;<br>
+       &nbsp;if&nbsp;test&nbsp;!&nbsp;$YN;&nbsp;then&nbsp;YN="n";&nbsp;fi&nbsp;<br>
+
+       &nbsp;if&nbsp;test&nbsp;$YN&nbsp;!=&nbsp;"y"&nbsp;;&nbsp;then&nbsp;<br>
+
+       &nbsp;&nbsp;echo&nbsp;"Aborted."&nbsp;<br>
+       &nbsp;&nbsp;exit&nbsp;1&nbsp;<br>
+       &nbsp;fi&nbsp;&nbsp;<br>
+       else&nbsp;&nbsp;<br>
+       &nbsp;echo&nbsp;"Error:&nbsp;Cannot&nbsp;remove&nbsp;domain.&nbsp;Domain&nbsp;not&nbsp;found"&nbsp;<br>
+
+       &nbsp;exit&nbsp;1&nbsp;&nbsp;<br>
+       fi&nbsp;&nbsp;<br>
+       OLDDOM=$1&nbsp;&nbsp;<br>
+       echo&nbsp;-n&nbsp;"Removing&nbsp;the&nbsp;domain&nbsp;with&nbsp;all&nbsp;user&nbsp;files..."&nbsp;<br>
+
+       userdel&nbsp;-r&nbsp;$OLDDOM&nbsp;<br>
+       echo&nbsp;"done"&nbsp;<br>
+       echo&nbsp;-n&nbsp;"Removing&nbsp;domain&nbsp;from&nbsp;qmail's&nbsp;control&nbsp;files..."&nbsp;<br>
+
+       cd&nbsp;$QHOME/control&nbsp;<br>
+       grep&nbsp;-v&nbsp;$OLDDOM&nbsp;virtualdomains&nbsp;&gt;&nbsp;virt.new&nbsp;<br>
+
+       grep&nbsp;-v&nbsp;$OLDDOM&nbsp;rcpthosts&nbsp;&gt;&nbsp;rcpt.new&nbsp;<br>
+
+       mv&nbsp;virt.new&nbsp;virtualdomains&nbsp;<br>
+       mv&nbsp;rcpt.new&nbsp;rcpthosts&nbsp;<br>
+       echo&nbsp;"done"&nbsp;<br>
+       echo&nbsp;-n&nbsp;"Restarting&nbsp;qmail..."&nbsp;<br>
+       killall&nbsp;qmail-lspawn&nbsp;<br>
+       $QHOME/rc&nbsp;&amp;&nbsp;<br>
+       echo&nbsp;"done"&nbsp;<br>
+       echo&nbsp;<br>
+       echo&nbsp;"All&nbsp;done!&nbsp;Domain&nbsp;$OLDDOM&nbsp;deleted."&nbsp;<br>
+
+       -end&nbsp;/usr/local/bin/remove_virt-</dd>
+    </dl>
+    All it does is first makes sure you know what you are doing,
+    and then deletes the system user ``<span class=
+    "textbf">domain.com</span>'' together with
+    <tt>/home/dom/domain.com</tt> directory, thus deleting any and
+    all users associated with it. Then it removes any mention of
+    this domain name from qmail's control files and restarts qmail
+    for you. My earlier note about strict BSD systems applies to
+    this script, too. 
+
+    <p>Put this file with the other and set permissions to
+    execute.</p>
+
+    <h2><a name="SECTION00075000000000000000">DNS settings</a></h2>
+
+    <p>I will not cover these here, but all you need to do is
+    provide an MX setting in the domain's zone file and point it to
+    <span class="textbf">mail.dexterslab.net</span>. Refer to your
+    DNS server's manuals for more info.</p>
+
+    <h2><a name="SECTION00076000000000000000">Done</a></h2>
+
+    <p>This is all you need to do with vmailmgr at this point. We
+    will be using bits and pieces of vmailmgr later on, as well as
+    will see how we can have a front-end to vmailmgr domains by
+    configuring and running <span class=
+    "textbf">vmailmgrd</span>.</p>
+
+    <h2><a name="SECTION00077000000000000000">Creating a sample
+    user</a></h2>
+
+    <p>Before we go on, let's create our own domain. We are most
+    likely planning to receive all ``<span class=
+    "textbf">dexterslab.net</span>'' mail on this server as well,
+    therefore we will need to add it as we would any other virtual
+    domain. Do so by using our script:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;add_virt&nbsp;dexterslab.net</dd>
+    </dl>
+    This creates the domain and makes it ready for adding users.
+    Since we don't have <span class="textbf">vmailmgrd</span>
+    configured yet, we can't use a web front-end for this,
+    therefore we will need to do it by hand. Do this by executing
+    the following: 
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;su&nbsp;dexterslab.net&nbsp;<br>
+       dexterslab.net@mail:$&nbsp;vadduser&nbsp;dexter</dd>
+    </dl>
+    Vmailmgr will prompt you for the password and once it's put in,
+    the user is created. Don't forget to do ``<tt>su
+    dexterslab.net</tt>'' before you run <span class=
+    "textbf">vadduser</span>. When you have created the user,
+    return back to root: 
+
+    <dl compact>
+      <dd>dexterslab.net@mail:$&nbsp;exit&nbsp;<br>
+       root@mail:#</dd>
+    </dl>
+    Now the system is ready to receive e-mail for
+    dexter@dexterslab.net. 
+
+    <h2><a name="SECTION00078000000000000000">Setting qmail system
+    aliases</a></h2>
+
+    <p>Since we are going to provide a fully virtual access to all
+    our users, we will most likely want all local mail (such as
+    addressed to root or dexter) to be delivered to virtual users
+    instead. This is done by setting a few aliases.</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;cd&nbsp;/var/qmail/alias&nbsp;<br>
+       root@mail:#&nbsp;echo&nbsp;'&amp;dexter'&nbsp;&gt;&nbsp;.qmail-root&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;'&amp;dexter'&nbsp;&gt;&nbsp;.qmail-toor&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;'&amp;dexter'&nbsp;&gt;&nbsp;.qmail-postmaster&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;'&amp;dexter'&nbsp;&gt;&nbsp;.qmail-admin&nbsp;<br>
+
+       root@mail:#&nbsp;echo&nbsp;'&amp;dexter@dexterslab.net'&nbsp;&gt;&nbsp;.qmail-dexter</dd>
+    </dl>
+    That should be enough. You may add as many as you need, making
+    sure that all physical users' mail gets redirected to virtual
+    servers (unless you know what you are doing). 
+
+    <p>Next, since an e-mail server is useless if users can't get
+    to their e-mail, we will need to add two most popular protocols
+    for accessing mailboxes - POP3 and IMAP4.</p>
+
+    <h1><a name="SECTION00080000000000000000">Configuring a POP3
+    server</a></h1>
+
+    <p>We don't need to compile and install anything to enable
+    POP3. However, we will need to modify our
+    <tt>/usr/local/bin/runmail</tt> file and add another line to
+    it, which will run another instance of tcpserver for the POP3
+    protocol.</p>
+
+    <h2><a name="SECTION00081000000000000000">Taking care of
+    inetd</a></h2>
+
+    <p>Many systems will have their own POP3 and IMAP handlers
+    configured in inetd. This needs to be disabled, otherwise it
+    will conflict with our installation. Edit your
+    <tt>/etc/inetd.conf</tt> file, find a line starting with
+    ``<tt>pop3</tt>'' and comment it out with a ``<tt>#</tt>''
+    sign. Do the same for the line beginning with
+    ``<tt>imap</tt>'', if you have one. On systems using <span
+    class="textbf">xinetd</span> (e.g. RedHat 7.x), refer to your
+    manuals on how to remove these services.</p>
+
+    <p>Restart inetd by running:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;killall&nbsp;-HUP&nbsp;inetd</dd>
+    </dl>
+
+    <h2><a name="SECTION00082000000000000000">Tcpserver config
+    line</a></h2>
+
+    <dl compact>
+      <dd>
+      mail@root:#&nbsp;/usr/local/bin/tcpserver&nbsp;-u0&nbsp;-g0&nbsp;0&nbsp;110&nbsp;\&nbsp;<br>
+
+       /var/qmail/bin/qmail-popup&nbsp;mail.dexterslab.net&nbsp;\&nbsp;<br>
+
+       /usr/local/bin/checkvpw&nbsp;/var/qmail/bin/qmail-pop3d&nbsp;\&nbsp;<br>
+
+       Maildir&nbsp;2&gt;&amp;1&nbsp;|&nbsp;/var/qmail/bin/splogger&nbsp;&amp;</dd>
+    </dl>
+    This line is very similar to the one we wrote for SMTP. The
+    flags this time are <tt>-u0</tt>, <tt>-g0</tt> because it has
+    to run as <span class="textbf">root</span> in order to be able
+    to change into user directories. <tt>0</tt> means it needs to
+    listen on all interfaces, <tt>110</tt> is a standard pop3 port.
+    After that we instruct tcpserver to use qmail's authentication
+    engine together with vmailmgr's <tt>checkvpw</tt>, and once we
+    have confirmed the login and password, we fire up the
+    <tt>qmail-pop3d</tt> POP3 daemon, which does the rest.
+    <tt>Maildir</tt> instructs qmail that we are using Maildir
+    storage format and <tt>splogger</tt> puts the output in the
+    system mail logs. 
+
+    <p>As with the other tcpserver line, let's stick this together
+    into our <tt>runmail</tt> script. Now it should look like
+    this:</p>
+
+    <dl compact>
+      <dd>
+        -begin&nbsp;/usr/local/bin/runmail-<br>
+         #!/bin/sh 
+
+        <p>
+        /usr/local/bin/tcpserver&nbsp;-x/etc/tcp.smtp.cdb&nbsp;-u5002&nbsp;-g1000&nbsp;\&nbsp;<br>
+
+         0&nbsp;smtp&nbsp;/var/qmail/bin/qmail-smtpd&nbsp;2&gt;&amp;1&nbsp;\&nbsp;<br>
+
+         |&nbsp;/var/qmail/bin/splogger&nbsp;&amp;
+        /usr/local/bin/tcpserver&nbsp;-u0&nbsp;-g0&nbsp;0&nbsp;110&nbsp;\&nbsp;<br>
+
+         /var/qmail/bin/qmail-popup&nbsp;mail.dexterslab.net&nbsp;\&nbsp;<br>
+
+         /usr/local/bin/checkvpw&nbsp;/var/qmail/bin/qmail-pop3d&nbsp;\&nbsp;<br>
+
+         Maildir&nbsp;2&gt;&amp;1&nbsp;|&nbsp;/var/qmail/bin/splogger&nbsp;&amp;&nbsp;<br>
+
+         -end&nbsp;/usr/local/bin/runmail-</p>
+      </dd>
+    </dl>
+    Since we're running all tcpserver lines from the same script,
+    we don't have to edit <tt>rc.local</tt> because it already
+    knows to execute <tt>/usr/local/bin/runmail</tt> at boot time. 
+
+    <p>Reboot the system, or run:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;killall&nbsp;tcpserver&nbsp;<br>
+       root@mail:#&nbsp;runmail</dd>
+    </dl>
+    This will fire up the pop3 daemon. 
+
+    <h2><a name="SECTION00083000000000000000">Testing if everything
+    worked</a></h2>
+
+    <p>Now it's time to test if everything has been set up
+    successfully. I will assume that your DNS settings are correct
+    and all mail you send to dexter@dexterslab.net is going where
+    it should be.</p>
+
+    <p>Fire up the tail command to watch your
+    <tt>/var/log/mail</tt> or <tt>/var/log/maillog</tt>:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;tail&nbsp;-f&nbsp;/var/log/maillog</dd>
+    </dl>
+    Go to any other machine which doesn't use our server to send
+    e-mail and send a message to <span class=
+    "textbf">dexter@dexterslab.net</span> (naturally, you've been
+    substituting this for whichever is relevant for your own
+    system, no?). 
+
+    <p>Watch the output of your ``<tt>tail -f</tt>'' command and
+    hope that the e-mail finds its way to you. If everything was
+    set up correctly, then rejoice. If not, then start
+    troubleshooting step-by-step.</p>
+
+    <p>If all is OK - the e-mail arrived and was stored in your
+    user directory, then it's time to test the POP3 server. Get
+    your favorite pop3-capable client and set it to use the
+    following parameters:</p>
+
+    <ul>
+      <li>pop3 server: mail.dexterslab.net</li>
+
+      <li>smtp server: mail.dexterslab.net</li>
+
+      <li>Login: dexter@dexterslab.net</li>
+
+      <li>Password: secret</li>
+    </ul>
+
+    <p>If everything is OK, you should be able to retrieve the
+    e-mail from your server. (And there was much rejoicing and
+    drinking of beer).</p>
+
+    <p>Test the outgoing mail as well by sending mail to <span
+    class="textbf">dexter@dexterslab.net</span> and some remote
+    server. Make sure they both worked. If something is astray -
+    check your tcprules and refer to qmail, vmailmgr, and tcpserver
+    sites for hints on what might be wrong.</p>
+
+    <h2><a name="SECTION00084000000000000000">Vmailmgr login
+    usernames</a></h2>
+
+    <p>As you have noticed, you use full e-mail to log in, not just
+    your prefix. This allows vmailmgr to determine which virtual
+    domain you are using and set everything accordingly. This is
+    not the only login scheme; you may use any of the following
+    three:</p>
+
+    <ul>
+      <li>dexter@dexterslab.net</li>
+
+      <li>dexter:dexterslab.net</li>
+
+      <li>dexterslab.net-dexter</li>
+    </ul>
+
+    <p>My experience says that most users find it far less
+    confusing just to use their full e-mail address for logging in
+    (otherwise they may start putting ``user:domain.com'' in their
+    reply-to field, and such. Blech.)</p>
+
+    <h1><a name="SECTION00090000000000000000">Configuring
+    Courier-IMAP</a></h1>
+
+    <p>Now let's configure an IMAP server for our users. We will be
+    using courier-imap, as it is the only one which works well with
+    qmail, vmailmgr, and Maildir. Get it from
+    http://www.courier-mta.org/, but don't get the whole bundle -
+    we want just the IMAP server, without maildrop or SqWebMail
+    (it's not as good as SquirrelMail, in my opinion).</p>
+
+    <h2><a name="SECTION00091000000000000000">Building and
+    installing</a></h2>
+
+    <p>Courier-imap is tricky in a way that it requires you to
+    build it as non-root (this is overall a very good idea, too).
+    You may untar and configure it as a regular user, or you can
+    just follow my example and override this:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;./configure&nbsp;--disable-root-check</dd>
+    </dl>
+    Courier-imap will take a while to configure and it might seem
+    like it's going in a constant loop, but it's not. When it's
+    done configuring, build and install it by running: 
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;make&nbsp;&amp;&amp;&nbsp;make&nbsp;install</dd>
+    </dl>
+    This will install the courier-imap files in
+    <tt>/usr/lib/courier-imap.</tt> 
+
+    <h2><a name="SECTION00092000000000000000">Configuring
+    Courier-IMAP</a></h2>
+
+    <p>Follow these steps to enable courier-imap with vmailmgr.
+    First, go back to your <tt>vmailmgr-0.96-9</tt> directory where
+    you still have your vmailmgr distribution. Do this:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;mv&nbsp;authenticate/authvmailmgr&nbsp;\&nbsp;<br>
+
+       /usr/lib/courier-imap/libexec/authlib</dd>
+    </dl>
+    Authvmailmgr is needed so courier-imap knows how to
+    authenticate your virtual users. Next, go to
+    <tt>/usr/lib/courier-imap/etc</tt> and do: 
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;cp&nbsp;imapd.dist&nbsp;imapd&nbsp;<br>
+       root@mail:#&nbsp;cp&nbsp;imapd-ssl.dist&nbsp;imapd-ssl</dd>
+    </dl>
+    (Configuration of imapd-ssl is not covered in this Guide,
+    although you're welcome to investigate this on your own.
+    Courier-imap needs imapd-ssl config file in order to be able to
+    start.) 
+
+    <p>Now we need to edit the <tt>imapd</tt> file so it works for
+    us. Fire up your favorite editor and look for the following
+    lines:</p>
+
+    <p>MAXPERIP: The default setting is ``<tt>4</tt>'', but since
+    we are going to be using SquirrelMail, which accesses the
+    server from the same IP address, we want to bump it up to
+    something more sensible, like <tt>10</tt> or <tt>20</tt>.
+    Otherwise our webmail users will have problems connecting.</p>
+
+    <p>AUTHMODULES: Remove all default authmodules and put just one
+    - ``<tt>authvmailmgr</tt>''.</p>
+
+    <p>That's it. If you feel confident enough, you may tweak other
+    settings, but they are not vital to the functioning of the
+    server (unless you break something).</p>
+
+    <h2><a name="SECTION00093000000000000000">Starting
+    Courier-IMAP</a></h2>
+
+    <p>Courier-imap developers were nice enough to provide a
+    convenient startup script. To start courier-imap simply
+    run:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;/usr/lib/courier-imap/libexec/imapd.rc&nbsp;start</dd>
+    </dl>
+    Make sure the server is running by doing 
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;ps&nbsp;ax&nbsp;|&nbsp;grep&nbsp;courier</dd>
+    </dl>
+    Add ``<span class=
+    "textbf">/usr/lib/courier-imap/libexec/imapd.rc start</span>''
+    line to your <tt>rc.local</tt>, or configure your sysv-init
+    style system to use the <tt>imapd.rc</tt> file during the
+    startup process (not covered here). 
+
+    <h2><a name="SECTION00094000000000000000">Testing your
+    setup</a></h2>
+
+    <p>Again, send a message to dexter@dexterslab.net, but this
+    time use IMAP to connect to the server instead of POP3 when
+    checking mail. Login and password would be the same you used
+    last time:</p>
+
+    <ul>
+      <li>Login: dexter@dexterslab.com</li>
+
+      <li>Password: secret</li>
+    </ul>
+
+    <p>If everything worked fine, rejoice. You have your e-mail
+    system nearly ready.</p>
+
+    <h1><a name="SECTION000100000000000000000">Configuring
+    Apache</a></h1>
+
+    <p>Now that our e-mail system is up and running, it's time to
+    give our clients a nice web-mail interface so they can check
+    their e-mail whenever they are away from their computers.</p>
+
+    <p>I am going to advise setting up a webserver on the same
+    machine as where your mail server is running, meaning the box
+    we just configured. A minimalistic Apache/PHP install doesn't
+    require a lot of resources and will not weigh down your e-mail
+    box by much, but will give you several important
+    advantages.</p>
+
+    <p>First, if you decide to limit your webmail access to
+    HTTPS/SSL, you will not have to worry about cleartext traffic
+    going to IMAP server and back (SquirrelMail at the time of
+    writing doesn't support IMAPS or any alternative encryption
+    methods). By having both httpd and courier-imap server running
+    on the same box, you can firewall your ports to only allow
+    access to IMAP from the local machine.</p>
+
+    <p>Second, you will need a webserver on that machine anyway if
+    you want to run vmailmgr webmail front-end scripts.</p>
+
+    <p>Thus, my advice is to set up webmail on the same machine as
+    the mailserver. If you choose otherwise, you may still refer to
+    the rest of this document for hints on how to best configure
+    SquirrelMail and your Apache server. The rest of us - let's see
+    how we can install a webserver on this machine.</p>
+
+    <p>To do this, we will first need to compile and install the
+    Apache httpd server.</p>
+
+    <h2><a name="SECTION000101000000000000000">Packaged
+    stuff</a></h2>
+
+    <p>Nearly every BSD and Linux distribution provides a
+    pre-compiled version of Apache. My advise is - don't use it.
+    With software like Apache and PHP, it's always much better to
+    compile your own copy to make sure you only have the right
+    stuff compiled in, and not some generic bloated version.</p>
+
+    <p>If you have apache installed on your system, de-install it
+    by either using your RPM packager (<tt>rpm -e apache</tt>) or
+    <span class="textbf">pkg_delete</span>, or <span class=
+    "textbf">apt</span>, or whichever your packager is. Get the
+    latest copy of Apache-1.3 from http://httpd.apache.org/ (don't
+    get a 2.x as it is not a production quality server at the time
+    of writing).</p>
+
+    <h2><a name="SECTION000102000000000000000">Compiling and
+    installing Apache</a></h2>
+
+    <p>Untar the tar.gz file and cd into the apache-1.3.x
+    directory. To configure and build Apache, run these commands:<a
+    name="tex2html4" href="#foot603"><sup><span class=
+    "arabic">4</span></sup></a></p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;./configure&nbsp;--prefix=/usr/local/apache&nbsp;\&nbsp;<br>
+
+       --enable-module=so<br>
+       root@mail:#&nbsp;make&nbsp;&amp;&amp;&nbsp;make&nbsp;install</dd>
+    </dl>
+    This will build and install apache into
+    <tt>/usr/local/apache</tt> directory. Let's go on directly to
+    configuring and building PHP before we get dirty with
+    <tt>httpd.conf</tt> adaptation. 
+
+    <h1><a name="SECTION000110000000000000000">Configuring
+    PHP</a></h1>
+
+    <p>Same as before - if you have installed a pre-packaged copy
+    of PHP on your machine - remove it and build your own version.
+    I am yet to see a sane pre-compiled version of PHP. You can
+    download the source code from http://www.php.net/.</p>
+
+    <h2><a name="SECTION000111000000000000000">Compiling and
+    installing PHP</a></h2>
+
+    <p>Untar and cd into the php-4.0.x directory. Run these
+    commands:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;./configure&nbsp;--with-apxs=/usr/local/apache/bin/apxs</dd>
+    </dl>
+    If you want SquirrelMail to talk in other languages, you will
+    need to enable gettext support, too. Most UN*X systems come
+    with gettext already available and you just need to compile it
+    into the PHP by adding ``<tt>--with-gettext</tt>'' to your
+    configuration line. This is generally a good idea, anyway,
+    since some of your users might speak in other languages, not
+    just English. With gettext support, the configure line will
+    look like this: 
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;./configure&nbsp;--with-apxs=/usr/local/apache/bin/apxs&nbsp;\&nbsp;<br>
+
+       --with-gettext</dd>
+    </dl>
+    After PHP configures itself, build it like you did all others: 
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;make&nbsp;&amp;&amp;&nbsp;make&nbsp;install</dd>
+    </dl>
+    That's it. Apache and PHP are now installed on your system. 
+
+    <h2><a name="SECTION000112000000000000000">Symlinking</a></h2>
+
+    <p>For my convenience, I've always symlinked the configuration
+    files and startup commands to where it's easy to get to them. I
+    suggest you do the same:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;ln&nbsp;-s&nbsp;/usr/local/apache/conf/httpd.conf&nbsp;/etc/httpd.conf&nbsp;<br>
+
+       root@mail:#&nbsp;ln&nbsp;-s&nbsp;/usr/local/apache/bin/apachectl&nbsp;/usr/bin/apachectl</dd>
+    </dl>
+    Don't fire up the server yet. It's far from ready. 
+
+    <h1><a name="SECTION000120000000000000000">Setting up
+    SquirrelMail</a></h1>
+
+    <p>Thankfully, there are no pre-compiled versions of
+    SquirrelMail, so you will have to get one off the web. ;)
+    Download it from http://www.squirrelmail.org/. The latest
+    version at the time of writing is squirrelmail-1.0.3.</p>
+
+    <h2><a name="SECTION000121000000000000000">Untarring and
+    setting up directories.</a></h2>
+
+    <p>I've always liked to keep my web-related documents in
+    <tt>/home/httpd</tt>, so I will suggest the same approach.
+    Create <tt>/home/httpd</tt> if it doesn't exist on your system
+    and copy your <tt>squirrelmail-1.0.x.tar.gz</tt> there. Do:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;cd&nbsp;/home/httpd&nbsp;<br>
+       root@mail:#&nbsp;tar&nbsp;xzvf&nbsp;squirrelmail-1.0.x.tar.gz&nbsp;<br>
+
+       root@mail:#&nbsp;rm&nbsp;squirrelmail-1.0.x.tar.gz&nbsp;<br>
+       root@mail:#&nbsp;ln&nbsp;-s&nbsp;squirrelmail-1.0.x&nbsp;squirrelmail&nbsp;<br>
+
+       root@mail:#&nbsp;cd&nbsp;squirrelmail</dd>
+    </dl>
+    The first order of business is setting up a secure data
+    directory away from the document root. Do this: 
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;mv&nbsp;data&nbsp;/var/smdata&nbsp;<br>
+       root@mail:#&nbsp;chown&nbsp;-R&nbsp;nobody:nogroup&nbsp;/var/smdata&nbsp;<br>
+
+       root@mail:#&nbsp;chmod&nbsp;0600&nbsp;/var/smdata/*&nbsp;<br>
+
+       root@mail:#&nbsp;chmod&nbsp;0700&nbsp;/var/smdata</dd>
+    </dl>
+    The ``<span class="textbf">nobody:nogroup</span>'' setting is
+    safe for most systems. If yours says something like ``no such
+    group'', then try ``<span class="textbf">nobody:nobody</span>''
+    or whatever else your system has in stock for the Apache
+    process. To find out which user and group Apache runs as,
+    simply do: 
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;egrep&nbsp;'^User|^Group'&nbsp;/etc/httpd.conf</dd>
+    </dl>
+
+    <h2><a name="SECTION000122000000000000000">Configuring
+    SquirrelMail</a></h2>
+
+    <p>Using a provided perl script, this is a no-brainer.</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;cd&nbsp;config&nbsp;<br>
+       root@mail:#&nbsp;./conf.pl</dd>
+    </dl>
+    Settings in part 1 are up to you. In part 2 be sure to set: 
+
+    <ul>
+      <li>Your domain name (in our case <span class=
+      "textbf">mail.dexterslab.net</span>)</li>
+
+      <li>Set it to use <span class="textbf">Sendmail</span> (it
+      doesn't matter that we use qmail. The sendmail wrapper works
+      well enough for SquirrelMail). Using SMTP is less
+      efficient.</li>
+
+      <li>Set the server to ``<span class=
+      "textbf">courier</span>''.</li>
+    </ul>
+    There shouldn't be anything in need of changing in part 3. In
+    part 4 you need to do one thing: 
+
+    <ul>
+      <li>Change data directory from ``<span class=
+      "textbf">../data/</span>'' to ``<span class=
+      "textbf">/var/smdata/</span>''. Don't omit the trailing slash
+      at the end.</li>
+    </ul>
+    (If you're a non-English speaker and use charset other than
+    iso-8859-1, change that setting, too). 
+
+    <p>That's it! You may play around with theme settings and such,
+    if you want to. LDAP address books are not covered in this
+    document (see SquirrelMail docs for info), and we will get to
+    talk about plugins later.</p>
+
+    <h1><a name="SECTION000130000000000000000">Making Apache, PHP,
+    and SquirrelMail work together.</a></h1>
+
+    <p>Now it's up to the fun part - we get to dig apache's
+    <tt>httpd.conf</tt>. There are several ways to do it, but if
+    you are going to use apache just to run Squirrelmail, a very
+    minimalistic setup is needed.</p>
+
+    <h2><a name="SECTION000131000000000000000">Minimalistic
+    configuration</a></h2>
+
+    <p>Open <tt>/etc/httpd.conf</tt> in your favorite editor. Don't
+    be dismayed by the size of the file or by the abundance of
+    comments - we will only need to change a few things as default
+    settings will cover most anything. Let's go over the directives
+    you need to change in the order in which they appear in our
+    default <tt>httpd.conf</tt> installation.</p>
+
+    <ul>
+      <li>Port: The default will be <tt>8080</tt>, but you will
+      need to change it to <tt>80</tt></li>
+
+      <li>ServerAdmin: dexter@dexterslab.net</li>
+
+      <li>ServerName: Make sure this directive is commented out,
+      since we will be accessing this machine as different domains
+      each time.</li>
+
+      <li>DocumentRoot: put ``<tt>/home/httpd/squirrelmail</tt>''.
+      You will also need to change the <tt>&lt;Directory
+      '/usr/local/apache/htdocs'&gt;</tt> to <tt>&lt;Directory
+      '/home/httpd/squirrelmail'&gt;</tt></li>
+
+      <li>DirectoryIndex: change it to be <tt>index.php
+      index.html</tt></li>
+
+      <li>UseCanonicalName: change to <tt>Off</tt></li>
+
+      <li>Scroll a while and get to where it says ``<tt>AddType
+      application/x-tar .tgz</tt>''. Just above it there should be
+      declarations for PHP. Uncomment the one which is marked for
+      PHP 4.x. You don't have to enable the ``<tt>.phps</tt>''
+      setting, just the <tt>.php</tt>.</li>
+    </ul>
+
+    <p>This completes the minimalistic setup of the apache
+    server!</p>
+
+    <p>Now run:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;apachectl&nbsp;start</dd>
+    </dl>
+    This should fire up your web server. Go to
+    http://mail.dexterslab.net/ in your browser and enjoy a nice
+    webmail front end. To log in, use the same login and password
+    you used before. 
+
+    <p>Since we would like to run Apache at boot time, let's add
+    this line to our <tt>rc.local</tt>:</p>
+
+    <dl compact>
+      <dd>/usr/local/apache/bin/apachectl&nbsp;start</dd>
+    </dl>
+
+    <h2><a name="SECTION000132000000000000000">Other possible
+    configurations</a></h2>
+
+    <p>Thick books have been written on the subject of Apache
+    configuration. Naturally, most configurations are out of the
+    scope of this guide. I can only give a few pointers.</p>
+
+    <p>If you are planning to use this Apache server for other
+    stuff, you might want to bump all SquirrelMail-related stuff
+    into VirtualHost directives so it doesn't get in the way. There
+    are several ways to do this. For one, create a
+    <tt>_default_</tt> VirtualHost which will handle all requests
+    that don't have their own ServerName allocated. The
+    DocumentRoot for this server would be
+    '<tt>/home/httpd/squirrelmail</tt>' and therefore anybody
+    accessing it as mail.domain.tld will be served this default
+    setting.</p>
+
+    <p>You may also set up every mail.domain.tld VirtualHost
+    separately if you can stand the hassle. If you choose to do
+    this, then simply point their DocumentRoot's all to the same
+    place where your SquirrelMail installation is.</p>
+
+    <p>If you are planning to host regular websites for these
+    domains and want the users to access mail in a special
+    <tt>/mail</tt> subfolder of the www.domain.tld, you might want
+    to create a global alias <tt>/mail/</tt> pointing to
+    <tt>/home/httpd/squirrelmail</tt>. This will save you a
+    headache of creating symlinks in every documentroot.</p>
+
+    <p>Overall, there are many ways to configure SquirrelMail so
+    there is only one document root for each virtual domain. You
+    are encouraged to experiment on your own. ;)</p>
+
+    <h2><a name="SECTION000133000000000000000">SquirrelMail
+    plugins</a></h2>
+
+    <p>One of the greatest features of SquirrelMail is the ability
+    to extend the basic application with additional snippets of
+    code. You are encouraged to take a look at many plugins
+    available for SquirrelMail and download any of them that you
+    like. Some more useful ones are a spell-checker,
+    address-book-taker, mail_fetch to fetch messages from other
+    POP-boxes, and others.</p>
+
+    <p>Plugin installation is usually as easy as just untarring it
+    in the plugins directory, and then running the SquirrelMail's
+    <tt>conf.pl</tt> script, however some plugins will require you
+    to manually edit config files or running installer scripts.
+    Consult the plugin's documentation for more information and
+    installation instructions.</p>
+
+    <h1><a name="SECTION000140000000000000000">Administration
+    Front-end</a></h1>
+
+    <p>If you are anything like me, you prefer to have a nice http
+    front-end to ease such mundane tasks as adding and deleting
+    users. Besides, if you are an ISP, you will probably want the
+    domain owners to be able to administer their e-mail users
+    without involving you. Using the system we have just configured
+    and a nice Vmailmgr Admin plugin I wrote, it is as easy as
+    sneezing in February.</p>
+
+    <h2><a name="SECTION000141000000000000000">Getting things you
+    need</a></h2>
+
+    <p>You will need two more pieces of software in addition to the
+    ones you already have. One is a ucspi-unix package, and another
+    one is libmcrypt. You can get them from here:</p>
+
+    <ul>
+      <li><span class="textbf">Ucspi-unix-0.34.tar.gz</span>, get
+      it at <tt>http://em.ca/bruceg/ucspi-unix/</tt></li>
+
+      <li><span class="textbf">libmcrypt-2.4.10.tar.gz</span>, get
+      it at <tt>http://mcrypt.hellug.gr/</tt></li>
+
+      <li><span class="textbf">vadmin-v0.9.1.tar.gz</span>, get it
+      at <tt>http://mricon.com/SM/tarballs/</tt></li>
+    </ul>
+
+    <h2><a name="SECTION000142000000000000000">Installing
+    Ucspi-unix</a></h2>
+
+    <p>Very easy:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;tar&nbsp;xzvf&nbsp;ucspi-unix-0.34.tar.gz&nbsp;<br>
+
+       root@mail:#&nbsp;cd&nbsp;ucspi-unix-0.34&nbsp;<br>
+       root@mail:#&nbsp;make&nbsp;&amp;&amp;&nbsp;make&nbsp;install</dd>
+    </dl>
+
+    <h2><a name="SECTION000143000000000000000">Installing
+    libmcrypt</a></h2>
+
+    <p>Libmcrypt can give you some hard times, but it compiles
+    without problems on every Linux platform I've tried. If you're
+    running BSD and you're having problems compiling libmcrypt, try
+    using your ports CVS tree instead - they sometimes provide
+    patches which make libmcrypt compile without any problems.
+    Otherwise, installation is very straightforward:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;tar&nbsp;xzvf&nbsp;libmcrypt-2.4.10.tar.gz&nbsp;<br>
+
+       root@mail:#&nbsp;cd&nbsp;libmcrypt-2.4.10&nbsp;<br>
+       root@mail:#&nbsp;./configure&nbsp;--prefix=/usr&nbsp;<br>
+       root@mail:#&nbsp;make&nbsp;&amp;&amp;&nbsp;make&nbsp;install</dd>
+    </dl>
+
+    <h2><a name="SECTION000144000000000000000">Running
+    vmailmgrd</a></h2>
+
+    <p>Now it's time to run vmailmgrd. This is done by executing
+    the following command:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;/usr/bin/unixserver&nbsp;/tmp/.vmailmgrd&nbsp;\&nbsp;<br>
+
+       /usr/local/sbin/vmailmgrd&nbsp;2&gt;&amp;1&nbsp;|&nbsp;/var/qmail/bin/splogger&nbsp;&amp;</dd>
+    </dl>
+    Of course, we will want to stick this into our
+    <tt>rc.local</tt> file as well to run it at system startup: 
+
+    <dl compact>
+      <dd>
+      /usr/bin/unixserver&nbsp;/tmp/.vmailmgrd&nbsp;/usr/local/sbin/vmailmgrd&nbsp;\&nbsp;<br>
+
+       2&gt;&amp;1&nbsp;|&nbsp;/var/qmail/bin/splogger&nbsp;&amp;</dd>
+    </dl>
+    That's it, vmailmgrd is up and running. 
+
+    <h2><a name="SECTION000145000000000000000">Vmailmgr Admin
+    plugin for SquirrelMail</a></h2>
+
+    <p>This plugin will allow you to administer your domains
+    without leaving the comforts of your SquirrelMail interface.
+    What's more important, it allows you to designate admins for
+    each of your domains, so the owners of these domains can
+    administer their users without involving you, the ever-busy
+    administrator.</p>
+
+    <p>Since security is a very important issue here, we will make
+    use of that libmcrypt library we have just installed. First,
+    though, we will need to recompile PHP to enable the libmcrypt
+    support.</p>
+
+    <h3><a name="SECTION000145100000000000000">Recompiling
+    PHP4</a></h3>
+
+    <p>Go back to the directory with your PHP4 source. Now run
+    this:<a name="tex2html5" href="#foot604"><sup><span class=
+    "arabic">5</span></sup></a></p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;make&nbsp;distclean&nbsp;<br>
+       root@mail:#&nbsp;./configure&nbsp;--with-apxs=/usr/local/apache/bin/apxs&nbsp;\&nbsp;<br>
+
+       --with-gettext&nbsp;--with-mcrypt&nbsp;<br>
+       root@mail:#&nbsp;make&nbsp;<br>
+       root@mail:#&nbsp;make&nbsp;install&nbsp;<br>
+       root@mail:#&nbsp;apachectl&nbsp;restart</dd>
+    </dl>
+    This should activate the new build of PHP with libmcrypt
+    support. Surf to <span class=
+    "textbf">mail.dexterslab.com</span> and make sure everything is
+    working. 
+
+    <h3><a name="SECTION000145200000000000000">Getting and
+    installing Vadmin</a></h3>
+
+    <p>You can get the latest version of Vmailmgr Admin plugin for
+    Squirrelmail here:</p>
+
+    <ul>
+      <li><tt>http://mricon.com/SM/tarballs/</tt></li>
+    </ul>
+    The latest version is 0.9 at the time of writing. Download the
+    plugin, then copy it into your squirrelmail/plugins directory: 
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;cp&nbsp;vadmin-v0.9.1.tar.gz&nbsp;/home/httpd/squirrelmail/plugins&nbsp;<br>
+
+       root@mail:#&nbsp;cd&nbsp;/home/httpd/squirrelmail/plugins&nbsp;<br>
+
+       root@mail:#&nbsp;tar&nbsp;xzvf&nbsp;vadmin-v0.9.1.tar.gz&nbsp;<br>
+
+       root@mail:#&nbsp;rm&nbsp;vadmin-v0.9.1.tar.gz&nbsp;<br>
+       root@mail:#&nbsp;cd&nbsp;vadmin</dd>
+    </dl>
+    Vadmin provides a convenient installer to make the installation
+    of the plugin effortless. To engage the installer, do this: 
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;cd&nbsp;scripts&nbsp;<br>
+       root@mail:#&nbsp;./installer.sh</dd>
+    </dl>
+    The <tt>installer.sh</tt> shell script is very verbose and will
+    guide you through the installation process giving you very
+    detailed instructions. It would be silly to repeat them here.
+    When the installer asks you about who should be ``elvis'',
+    provide your login handle, which in our case is <span class=
+    "textbf">dexter@dexterslab.net</span>. 
+
+    <p>After you have finished installing the plugin, you will need
+    to restart your Apache server one more time so the changes can
+    take effect:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;apachectl&nbsp;restart</dd>
+    </dl>
+    Now activate the vadmin plugin by running SquirrelMail's
+    <tt>conf.pl</tt> script and choosing ``plugins''. Activate
+    vadmin and quit the configurator. The plugin is now activated. 
+
+    <p>After this, you should move the whole '<tt>scripts</tt>'
+    directory somewhere where it's easy to get to them. Do this by
+    going back to <tt>vadmin</tt> plugin directory and running the
+    following commands:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;mv&nbsp;scripts&nbsp;/root/vadmin-scripts&nbsp;<br>
+
+       root@mail:#&nbsp;cd&nbsp;/root/vadmin-scripts</dd>
+    </dl>
+    Now we need to install a domain. 
+
+    <h2><a name="SECTION000146000000000000000">Adding domains to
+    Vadmin</a></h2>
+
+    <p>Let's add <span class="textbf">dexterslab.net</span> to the
+    list of domains available under vadmin. To do so, make sure
+    you're in your <tt>vadmin-scripts</tt> directory and run the
+    <tt>vaddomain.sh</tt> script:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;./vaddomain.sh&nbsp;dexterslab.net</dd>
+    </dl>
+    It will create the necessary directories and then will ask you
+    ``<span class="textit">would you like to add lowly admins to
+    this domain?</span>'' Answer ``no'', since we're going to be
+    the ones doing all administering. Answer ``no'' to the next
+    question as well, since we don't want to edit cross-admins yet
+    (we will deal with admins and cross-admins later). 
+
+    <p>Now go to <span class=
+    "textbf">http://mail.dexterslab.net/</span> and log into
+    SquirrelMail. You will notice that an ``Admin'' option appeared
+    in the menu line - vadmin has detected that you are one of the
+    admins and gives you an option to log into the administrator
+    interface. Go there.</p>
+
+    <p>You are given an option to log in. If you chose a
+    ``<tt>USER</tt>'' option for cross-admin authentication (which
+    is recommended for starters), then type in your mailbox
+    password in the ``Password'' field, otherwise type in whichever
+    is the password you chose when you were creating the <span
+    class="textbf">dexterslab.net</span> domain.</p>
+
+    <p>If you used your mailbox password when authenticating, the
+    next screen will ask you the domain password for <span class=
+    "textbf">dexterslab.net</span>. This is the system password you
+    chose when you were creating this domain. Type it in and click
+    ``Proceed''. The password will be saved on the server, but
+    don't worry - it will be saved in an encrypted format and
+    vadmin's security features are strong enough to make the job of
+    hijacking the passwords rather hard.</p>
+
+    <p>The next screen will be the Vadmin main menu - click away to
+    explore the convenience of this plugin. Everything should be
+    pretty self-explanatory, plus lengthy descriptions are provided
+    whenever something confusing comes up.</p>
+
+    <h3><a name="SECTION000146100000000000000">Using
+    domain_magic.sh script</a></h3>
+
+    <p>If you are adding vadmin to an existing system already
+    running several domains configured with vmailmgr and qmail, you
+    can run the <tt>domain_magic.sh</tt> script to make them
+    automagically available for use with vadmin.</p>
+
+    <h2><a name="SECTION000147000000000000000">Adding more
+    domains</a></h2>
+
+    <p>Now let's mainstream the process of adding domains. Let's
+    say you want to add two virtual domains to your system. For the
+    purposes of being descriptive, I will make them be <span class=
+    "textbf">cownchikin.org</span> and <span class=
+    "textbf">iamweasel.com</span>.</p>
+
+    <p>First, let's edit our <tt>add_virt</tt> script so it calls
+    the vadmin's scripts after creating these domains within the
+    system. Fire up your favorite editor, go to the very bottom of
+    the script, and right before the line where it says <tt>echo
+    ``All done!..''</tt>, add this one:</p>
+
+    <dl compact>
+      <dd>/root/vadmin-scripts/vaddomain.sh&nbsp;$NEWDOM</dd>
+    </dl>
+    While you're at it, modify your <tt>remove_virt</tt> script as
+    well, doing almost the same thing: find the line at the end
+    where it says <tt>echo ``All done!...''</tt> and add this line
+    right before it: 
+
+    <dl compact>
+      <dd>/root/vadmin-scripts/vdeldomain.sh&nbsp;$OLDDOM</dd>
+    </dl>
+    Now let's add <span class="textbf">cownchikin.org</span>
+    domain: 
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;add_virt&nbsp;cownchikin.org</dd>
+    </dl>
+    When it gets to the question ``<span class="textit">Would you
+    like to add lowly admins for this domain?</span>'' say
+    ``<tt>y</tt>'' this time, because we would like ``<span class=
+    "textbf">supercow@cownchikin.org</span>'' to be the
+    administrator of this domain. Answering ``<tt>y</tt>'' will
+    bring up your editor (if you didn't set it up, this will bring
+    up vi. Don't panic, just type ``<tt>i</tt>'', then type
+    ``<tt>supercow@cownchikin.org</tt>'', then hit
+    ``<tt>Esc</tt>'', and type ``<tt>:wq</tt>'' + [Enter]). 
+
+    <p>The next question will be ``<span class="textit">Would you
+    like to add cross-admins?</span>''. Answer ``<tt>y</tt>''. This
+    will bring up the following screen:</p>
+
+    <dl compact>
+      <dd>
+      Current&nbsp;cross-admins&nbsp;for&nbsp;'cownchikin.org':&nbsp;<br>
+
+       ----------------------&nbsp;<br>
+       -&nbsp;<br>
+       Handle/killall/exit:</dd>
+    </dl>
+    Type in <tt>earl@cownchikin.org</tt> and hit enter. The screen
+    will update and you will see ``<tt>earl@cownchikin.org</tt>''
+    in the list of cross-admins. Typing
+    ``<tt>earl@cownchikin.org</tt>'' again will delete Earl from
+    the list of cross-admins. 
+
+    <p>Now that you have enabled this domain on your system and
+    within vadmin, go to <span class=
+    "textbf">http://mail.dexterslab.net/</span>. Log in as <span
+    class="textbf">dexter@dexterslab.net</span>, then click
+    ``Admin''. When you see the login screen to our vadmin
+    interface, erase ``<tt>dexterslab.net</tt>'' where it says
+    ``Domain'' and type in ``<tt>cownchikin.org</tt>''. Provide the
+    domain password when it asks for it, and voila - you're in the
+    administrative interface to our newly created domain.</p>
+
+    <p>Now you need to add the ``<span class=
+    "textbf">supercow</span>'' and ``<span class=
+    "textbf">earl</span>'' users. Select ``<tt>add new user</tt>'',
+    and follow instructions to create the user <span class=
+    "textbf">supercow@cownchikin.org</span>, then repeat for <span
+    class="textbf">earl@cownchikin.org</span>. After this, make
+    sure you have ``<span class=
+    "textbf">mail.cownchikin.org</span>'' domain enabled in your
+    DNS settings and everything is ready for ``<span class=
+    "textbf">supercow@cownchikin.org</span>'' and ``<span class=
+    "textbf">earl@cownchikin.org</span>'' to log into SquirrelMail,
+    click on the ``Admin'' link, and start administering the
+    domain.</p>
+
+    <p>Let's finish exploring Vadmin by adding yet another domain.
+    Type:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;add_virt&nbsp;iamweasel.com</dd>
+    </dl>
+    Answer ``<tt>y</tt>'' to the ``lowly admins'' question, and
+    make <tt>weasel@iamweasel.com</tt> your lowly admin. When you
+    are asked about cross-admins, answer ``<tt>y</tt>''. This will
+    bring up a window looking like this: 
+
+    <dl compact>
+      <dd>
+      Current&nbsp;cross-admins&nbsp;for&nbsp;'iamweasel.com':&nbsp;<br>
+
+       ---------------------&nbsp;<br>
+       -&nbsp;<br>
+       Handle/killall/exit:&nbsp;</dd>
+    </dl>
+    Since Earl is in both ``<span class="textbf">Cow and
+    Chicken</span>'' and ``<span class="textbf">I am
+    Weasel</span>'' cartoons on Cartoon Network, we will want him
+    to be able to administer both <span class=
+    "textbf">cownchikin.org</span> and <span class=
+    "textbf">iamweasel.com</span> domains. Type in:
+    ``<tt>earl@cownchikin.org</tt>'' to enable cross-admining of
+    ``<span class="textbf">iamweasel.com</span>'' for Earl. 
+
+    <p>Now go to <span class="textbf">mail.dexterslab.com</span>,
+    log in, click ``Admin'', erase ``<tt>dexterslab.net</tt>'',
+    type in ``<tt>iamweasel.com</tt>'', provide password, create
+    the ``<span class="textbf">weasel</span>'' user, then log out,
+    sign out, go to <span class=
+    "textbf">mail.cownchikin.org</span>, log in as
+    ``<tt>earl@cownchikin.org</tt>'' and click on ``Admin''. You
+    will see that you have a choice of admining either ``<span
+    class="textbf">cownchikin.org</span>'' or ``<span class=
+    "textbf">iamweasel.com</span>'' domains.</p>
+
+    <p>If this all confuses you, play around with vadmin and vadmin
+    scripts to familiarize yourself with them. Cross-admins are
+    only useful if you have any clients owning several domains and
+    they find it a hassle to have to log out of one mailbox and log
+    into another one just to administer their users. If you don't
+    have any clients who own several domains, you will only need to
+    add ``lowly admins'' and not bother with cross-admins.</p>
+
+    <p>Vadmin is not capable of screwing up your system, so don't
+    be afraid to play with it. The most it will do is make a domain
+    operational or not operational from within the vadmin plugin,
+    so try it away. To find out what other scripts in the
+    <tt>vadmin-scripts</tt> directory do, run this command while in
+    that directory:</p>
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;./whatsthisdo.sh&nbsp;scriptname.sh</dd>
+    </dl>
+    or just: 
+
+    <dl compact>
+      <dd>root@mail:#&nbsp;./whatsthisdo.sh</dd>
+    </dl>
+    to see descriptions for them all. 
+
+    <p>(In case you are wondering why I didn't just make a web
+    front-end interface to adding domains, admins, and
+    cross-admins, then the answer is - there is no really secure
+    way of doing it from the web: too many possible exploits are
+    available if I was to do something like this, therefore I
+    didn't.)</p>
+
+    <h1><a name="SECTION000150000000000000000">Finalizing it
+    all</a></h1>
+
+    <p>Your mail system is set up. If you have encountered any
+    problems during the install, then consult the documentation
+    provided with the misbehaving component - it will most likely
+    tell you whom to contact for support. If everything is running
+    smoothly and you are happy with your system, then
+    congratulations - you've got yourself one of the best solutions
+    out there.</p>
+
+    <h2><a name="SECTION000151000000000000000">Why this is not
+    recommended for large systems</a></h2>
+
+    <p>The only reason this is not recommended for large systems is
+    because SquirrelMail is currently not very scalable - you
+    cannot easily run it on a server farm, since both SquirrelMail
+    and Vadmin save their preferences onto the HDD (a trade-off for
+    not requiring a database engine). However, if you decide not to
+    use SquirrelMail/Vadmin, then Qmail-VmailMgr-Courier is
+    definitely a strong enough solution to be run on high-demand
+    servers, but this has its own set of requirements and is not
+    covered under this guide.</p>
+
+    <h2><a name="SECTION000152000000000000000">Corrections and
+    Comments</a></h2>
+
+    <p>If you've found a mistake in this document which you would
+    like to correct, or would just like to comment on something,
+    please send a message to icon@mricon.com so I can make the
+    correction or read your comments. You may also check my website
+    at <tt>http://mricon.com/SM/guide/</tt> for the latest version
+    of this document.</p>
+
+    <h2><a name="SECTION000153000000000000000">Thank you and good
+    luck! ;)</a></h2>
+
+    <p>If you found this Guide useful, please let me know by
+    executing:</p>
+
+    <dl compact>
+      <dd>
+      root@mail:#&nbsp;uname&nbsp;-a&nbsp;|&nbsp;mail&nbsp;icon@mricon.com&nbsp;-s&nbsp;'Thanks'</dd>
+    </dl>
+
+    <p>Sincerely, Konstantin Riabitsev, aka Mr.Icon, aka Graf.</p>
+
+    <h1><a name="SECTION000160000000000000000">About this document
+    ...</a></h1>
+    <strong>Qmail-Vmailmgr-Courier-SquirrelMail Installation
+    Guide</strong> 
+
+    <p>This document was generated using the <a href=
+    "http://www-dsed.llnl.gov/files/programs/unix/latex2html/manual/">
+    <strong>LaTeX</strong>2<tt>HTML</tt></a> translator Version
+    2K.1beta (1.50)</p>
+
+    <p>Copyright &copy; 1993, 1994, 1995, 1996, <a href=
+    "http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</a>,
+    Computer Based Learning Unit, University of Leeds.<br>
+     Copyright &copy; 1997, 1998, 1999, <a href=
+    "http://www.maths.mq.edu.au/~ross/">Ross Moore</a>, Mathematics
+    Department, Macquarie University, Sydney.</p>
+
+    <p>The command line arguments were:<br>
+     <strong>latex2html</strong> <tt>-split 0 -nonavigation
+    -html_version 4 qvcs-guide.tex</tt></p>
+
+    <p>The translation was initiated by Konstantin Riabitsev on
+    2001-04-09<br>
+    </p>
+    <hr>
+
+    <h4>Footnotes</h4>
+
+    <dl>
+      <dt><a name="foot600">... file.</a><a name="foot600" href=
+      "qvcs-guide.html#tex2html1"><sup><span class=
+      "arabic">1</span></sup></a></dt>
+
+      <dd><span class="textit"><span class="textbf">Caution:</span>
+      This varies from system to system and you need to consult
+      your system's setup manuals. On some systems you will run
+      into problems of startup scripts trying to start sendmail
+      daemon whenever they find <tt>/usr/sbin/sendmail</tt> -
+      doesn't matter to them if it's really a symlink to a qmail
+      wrapper. Also, on most linux systems the <tt>rc.local</tt>
+      file is in <tt>/etc/rc.d/</tt> directory. Use caution and
+      make sure your qmail starts after reboot - watch any warning
+      messages your computer spews out during boot-up. This applies
+      to all other places where I talk about stuff being put in
+      <tt>/etc/rc.local</tt>.</span></dd>
+
+      <dt><a name="foot605">... executing:</a><a name="foot605"
+      href="qvcs-guide.html#tex2html2"><sup><span class=
+      "arabic">2</span></sup></a></dt>
+
+      <dd><span class="textit"><span class="textbf">General note
+      about scripts in this Guide:</span> In order to make the
+      scripts look sane on a displayed/printed page, I am using
+      backslashes to go to the next line. You can either omit the
+      ``\'' and just continue typing without hitting ``return''
+      until you get to the very end of the command, or you may
+      follow my lead and use backslashes. In this case make sure
+      you <span class="textbf">hit ``return'' right after you typed
+      the ``\''</span>. What this does is it escapes the newline
+      symbol and the system accepts the command as if it was all on
+      one line. Most shells will show a ``&gt;'' symbol after you
+      hit return to denote that you may continue input.</span></dd>
+
+      <dt><a name="foot602">... reflected.</a><a name="foot602"
+      href="qvcs-guide.html#tex2html3"><sup><span class=
+      "arabic">3</span></sup></a></dt>
+
+      <dd><span class="textit"><span class="textbf">Note:</span>
+      This, and the <tt>remove_virt</tt> scripts may fail on a
+      strict BSD system, which does not allow usernames longer than
+      8 characters and where a <tt>killall</tt> command is not
+      available. Not to worry - since I am running a strict BSD
+      system as well, I have modified these scripts to work on my
+      BSD box. Get the strict versions on my web-site at
+      http://www.mricon.com/SM/guide/.</span></dd>
+
+      <dt><a name="foot603">... commands:</a><a name="foot603"
+      href="qvcs-guide.html#tex2html4"><sup><span class=
+      "arabic">4</span></sup></a></dt>
+
+      <dd><span class="textit"><span class="textbf">Note:</span>
+      These instructions and configurations are only useful if
+      you're just using Apache/PHP to run SquirrelMail and nothing
+      else. If you are planning to provide any additional hosting
+      on the same server, your mileage will vary. Note that for
+      security purposes you are not encouraged to share the same
+      server to do both hosting and web-mail, although if you know
+      what you are doing and can provide sufficient security, there
+      is no reason not to go for it.</span></dd>
+
+      <dt><a name="foot604">... this:</a><a name="foot604" href=
+      "qvcs-guide.html#tex2html5"><sup><span class=
+      "arabic">5</span></sup></a></dt>
+
+      <dd><span class="textit"><span class="textbf">Note to
+      (Open)BSD users:</span> PHP-4.0.4pl1 misdetects libmcrypt and
+      thinks you have version 2.2 instead of 2.4, which brings up
+      errors during the build process. To work around it, download
+      this file from http://www.mricon.com/SM/guide/config.m4 and
+      replace the <tt>config.m4</tt> file in <tt>ext/mcrypt</tt>
+      directory with the patched copy. After that run
+      <tt>./buildconf</tt> from the source root directory to enable
+      the changes. You should now be able to build PHP with the
+      libmcrypt support as instructed.</span></dd>
+    </dl>
+    <br>
+     
+    <hr>
+
+    <address>
+      Konstantin Riabitsev 2001-04-09
+    </address>
+  </body>
+</html>
+
