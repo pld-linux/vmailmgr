@@ -129,7 +129,7 @@ install %{SOURCE3} doc
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 %configure
 %{__make} all
 
