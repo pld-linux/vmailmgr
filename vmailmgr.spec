@@ -8,6 +8,7 @@ Source:		http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar
 Source1:	vmailmgr.init
 URL:		http://em.ca/~bruceg/vmailmgr/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	python
 Obsoletes:	checkvpw
 
 %define python_sitepkgsdir %(echo `python -c "import sys; print (sys.prefix + '/lib/python' + sys.version[:3] + '/site-packages/')"`)
@@ -59,6 +60,8 @@ CGI.
 
 %prep
 %setup -q
+aclocal
+autoconf
 %configure
 %build
 %{__make} all
