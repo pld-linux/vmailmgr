@@ -89,8 +89,8 @@ Group(fr):	Aplicaciones/Système
 Group(pl):	Aplikacje/System
 Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
-Prereq:		rc-scripts
-Prereq:		/sbin/chkconfig
+PreReq:		rc-scripts
+PreReq:		/sbin/chkconfig
 
 %description daemon
 This package contains the vmailmgrd daemon that provides virtual
@@ -118,6 +118,9 @@ Requires:	vmailmgr-daemon = %{version}
 This package contains vmailmgr code written in/for Python, including
 one CGI.
 
+%description python -l pl
+Ten pakiet zawiera kod vmailmgra napisany w/dla Pythona i jedno CGI.
+
 %package pop3
 Summary:	qmail-pop3 config for vmailmgr
 Summary(pl):	Konfiguracja qmail-pop3 dla vmailmgr
@@ -130,7 +133,7 @@ Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
-Prereq:		rc-inetd
+PreReq:		rc-inetd
 
 %description pop3
 This package contains configfiles needed for working with qmail pop3
