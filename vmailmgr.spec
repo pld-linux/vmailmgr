@@ -159,8 +159,6 @@ cat << EOF >$RPM_BUILD_ROOT%{_sysconfdir}/vmailmgr/vdeliver-predeliver
 %{_bindir}/vcheckquota
 EOF
 
-gzip -9nf doc/{ChangeLog*,*.txt}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -195,7 +193,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc doc/{*.gz,*.html,*.sgml}
+%doc doc/{ChangeLog*,*.txt} doc/{*.html,*.sgml}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %dir %{_sysconfdir}/vmailmgr
 %config(missingok noreplace) %verify(not size mtime md5) %{_sysconfdir}/vmailmgr/*
