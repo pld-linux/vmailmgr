@@ -9,6 +9,7 @@
 
 # Source function library.
 . /etc/rc.d/init.d/functions
+. /etc/sysconfig/network
 
 # Check that networking is up.
 if is_no "${NETWORKING}"; then
