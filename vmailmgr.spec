@@ -58,6 +58,26 @@ Requires:	vmailmgr-daemon = %{PACKAGE_VERSION}
 This package contains vmailmgr code written in/for Python, including one 
 CGI.   
 
+%package pop3
+Summary:        qmail-pop3 config for vmailmgr
+Group:          Utilities/System
+Requires:       vmailmgr-daemon = %{PACKAGE_VERSION}
+Requires:       qmail-pop3
+
+%description pop3
+This package contains configfiles needed for working with qmail pop3 
+server.
+
+%package quota
+Summary:        Config files needed for per-virtual-user quotas for vmailmgr.
+Group:          Utilities/System
+Requires:       vmailmgr-daemon = %{PACKAGE_VERSION}
+Requires:       qmail-pop3
+
+%description quota
+This package contains configfiles needed for working with per-virtual-user 
+quotas. 
+
 %prep
 %setup -q
 aclocal
@@ -68,7 +88,7 @@ autoconf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{var/log/vmailmgrd,etc/{rc.d/init.d,vmailmgr}}
+install -d $RPM_BUILD_ROOT/{var/log/vmailmgrd,etc/{rc.d/init.d,vmailmgr,qmail,sysconfig/rc-inetd}}
 
 %python_compile
 %python_compile_opt
@@ -84,6 +104,22 @@ echo passwd				>$RPM_BUILD_ROOT/etc/vmailmgr/password-file
 echo ./Maildir/				>$RPM_BUILD_ROOT/etc/vmailmgr/default-maildir
 echo maildir				>$RPM_BUILD_ROOT/etc/vmailmgr/maildir-arg-str
 echo /var/lock/svc/vmailmgrd/socket	>$RPM_BUILD_ROOT/etc/vmailmgr/socket-file
+echo checkvpw				>$RPM_BUILD_ROOT/etc/qmail/checkpassword
+cat << EOF 				>$RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/qpop-vmailmgr
+ERVICE_NAME=pop3
+SOCK_TYPE=stream
+PROTOCOL=tcp
+PORT=110
+FLAGS=nowait
+USER=root
+SERVER=tcpd
+DAEMON=/var/qmail/bin/qmail-popup
+DAEMONARGS="`hostname -f` /usr/bin/checkvpw /var/qmail/bin/qmail-pop3d Mail/Maildir"
+EOF
+cat << EOF >$RPM_BUILD_ROOT/etc/vmailmgr/vdeliver-predeliver
+#!/bin/sh
+/usr/bin/vcheckquota
+EOF
 
 gzip -9nf doc/{ChangeLog*,*.txt}
 
@@ -132,3 +168,11 @@ fi
 %dir %{python_sitepkgsdir}/vmailmgr
 %{python_sitepkgsdir}/vmailmgr/*.pyc
 %{python_sitepkgsdir}/vmailmgr/*.pyo
+
+%files pop3
+%defattr(644,root,root,755)
+%config /etc/sysconfig/rc-inetd/qpop-vmailmgr
+
+%files quota
+%defattr(644,root,root,755)
+%config /etc/vmailmgr/vdeliver-predeliver
