@@ -71,7 +71,7 @@ Summary:	Vmailmgr daemon for CGIs
 Summary(pl):	Demon vmailmgr dla CGI
 Group:		Applications/System
 PreReq:		rc-scripts
-PreReq:		/sbin/chkconfig
+Requires(post,preun):	/sbin/chkconfig
 
 %description daemon
 This package contains the vmailmgrd daemon that provides virtual
@@ -100,9 +100,9 @@ Ten pakiet zawiera kod vmailmgra napisany w/dla Pythona i jedno CGI.
 Summary:	qmail-pop3 config for vmailmgr
 Summary(pl):	Konfiguracja qmail-pop3 dla vmailmgr
 Group:		Applications/System
+PreReq:		rc-inetd
 Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
-PreReq:		rc-inetd
 
 %description pop3
 This package contains configfiles needed for working with qmail pop3
@@ -144,7 +144,8 @@ install -d $RPM_BUILD_ROOT/{var/log/vmailmgrd,etc/{rc.d/init.d,vmailmgr,qmail,sy
 %python_compile
 %python_compile_opt
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT \
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
 	cgidir=/home/services/httpd/cgi-bin \
 	pythonlibdir=%{python_sitepkgsdir}/vmailmgr
 
