@@ -1,0 +1,9 @@
+ERVICE_NAME=pop3
+SOCK_TYPE=stream
+PROTOCOL=tcp
+PORT=110
+FLAGS=nowait
+USER=root
+SERVER=tcpd
+DAEMON=/var/qmail/bin/qmail-popup
+DAEMONARGS="`hostname -f` /usr/bin/checkvpw /var/qmail/bin/qmail-pop3d Mail/Maildir"
