@@ -5,12 +5,6 @@ Version:	0.96.9
 Release:	4
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(es):	Aplicaciones/Sistema
-Group(fr):	Aplicaciones/Système
-Group(pl):	Aplikacje/System
-Group(pt):	Aplicações/Sistema
-Group(pt_BR):	Aplicações/Sistema
 Source0:	http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}-qpop.inetd
@@ -41,12 +35,6 @@ zestaw narzêdzi do obs³ugi takiej domeny.
 Summary:	CGI applications for vmailmgr
 Summary(pl):	Aplikacje CGI do vmailmgr
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(es):	Aplicaciones/Sistema
-Group(fr):	Aplicaciones/Système
-Group(pl):	Aplikacje/System
-Group(pt):	Aplicações/Sistema
-Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
 
@@ -62,12 +50,6 @@ vmailmgr przez WWW.
 Summary:	PHP applications for vmailmgr
 Summary(pl):	Aplikacje PHP do vmailmgr
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(es):	Aplicaciones/Sistema
-Group(fr):	Aplicaciones/Système
-Group(pl):	Aplikacje/System
-Group(pt):	Aplicações/Sistema
-Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
 
@@ -83,12 +65,6 @@ vmailmgr przez WWW.
 Summary:	Vmailmgr daemon for CGIs
 Summary(pl):	Demon vmailmgr dla CGI
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(es):	Aplicaciones/Sistema
-Group(fr):	Aplicaciones/Système
-Group(pl):	Aplikacje/System
-Group(pt):	Aplicações/Sistema
-Group(pt_BR):	Aplicações/Sistema
 PreReq:		rc-scripts
 PreReq:		/sbin/chkconfig
 
@@ -105,12 +81,6 @@ domenami wirtualnymi nieuprzywilejowanym klientom, takim jak CGI.
 Summary:	Python modules and CGIs for vmailmgr
 Summary(pl):	Modu³y pythona i CGI do vmailmgr
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(es):	Aplicaciones/Sistema
-Group(fr):	Aplicaciones/Système
-Group(pl):	Aplikacje/System
-Group(pt):	Aplicações/Sistema
-Group(pt_BR):	Aplicações/Sistema
 %requires_eq	python
 Requires:	vmailmgr-daemon = %{version}
 
@@ -125,12 +95,6 @@ Ten pakiet zawiera kod vmailmgra napisany w/dla Pythona i jedno CGI.
 Summary:	qmail-pop3 config for vmailmgr
 Summary(pl):	Konfiguracja qmail-pop3 dla vmailmgr
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(es):	Aplicaciones/Sistema
-Group(fr):	Aplicaciones/Système
-Group(pl):	Aplikacje/System
-Group(pt):	Aplicações/Sistema
-Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
 PreReq:		rc-inetd
@@ -147,12 +111,6 @@ pop3 qmaila.
 Summary:	Config files needed for per-virtual-user quotas for vmailmgr
 Summary(pl):	Pliki konfiguracyjne do quoty dla u¿ytkowników vmailmgr
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(es):	Aplicaciones/Sistema
-Group(fr):	Aplicaciones/Système
-Group(pl):	Aplikacje/System
-Group(pt):	Aplicações/Sistema
-Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
 
