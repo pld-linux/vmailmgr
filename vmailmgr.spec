@@ -7,9 +7,11 @@ Release:	4
 License:	GPL
 Group:		Applications/System
 Source0:	http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	dd5a34e2b01de73aa8ff1cd8cfd47936
 Source1:	%{name}.init
 Source2:	%{name}-qpop.inetd
 Source3:	http://mricon.com/SM/guide/qvcs-guide.html
+# Source3-md5:	7a5c19c12c1b8344f35d506b9c116e4d
 URL:		http://em.ca/~bruceg/vmailmgr/
 BuildRequires:	autoconf
 BuildRequires:	automake
