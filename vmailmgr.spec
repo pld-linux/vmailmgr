@@ -141,7 +141,7 @@ install -d $RPM_BUILD_ROOT/{var/log/vmailmgrd,etc/{rc.d/init.d,vmailmgr,qmail,sy
 %python_compile_opt
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT \
-	cgidir=/home/httpd/cgi-bin \
+	cgidir=/home/services/httpd/cgi-bin \
 	pythonlibdir=%{python_sitepkgsdir}/vmailmgr
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/vmailmgrd
@@ -201,11 +201,11 @@ fi
 
 %files cgi
 %defattr(644,root,root,755)
-%attr(755,root,root) /home/httpd/cgi-bin/*
+%attr(755,root,root) /home/services/httpd/cgi-bin/*
 
 %files php
 %defattr(644,root,root,755)
-/home/httpd/php/*
+/home/services/httpd/php/*
 
 %files daemon
 %defattr(644,root,root,755)
