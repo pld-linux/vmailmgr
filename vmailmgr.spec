@@ -88,19 +88,10 @@ gzip -9nf doc/{ChangeLog*,*.txt}
 rm -rf $RPM_BUILD_ROOT
 
 %post daemon
-/sbin/chkconfig --add vmailmgrd
-touch /var/log/vmailmgrd
-if [ -f /var/lock/subsys/vmailmgrd ]; then
-	/etc/rc.d/init.d/vmailmgrd restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/vmailmgrd start\" to start vmailmgrd daemon."
-fi
+NAME=vmailmgrd; DESC="vmailmgrd daemon"; %chkconfig_add
 
 %preun daemon
-if [ "$1" = "0" ];then
-	/sbin/chkconfig --del vmailmgrd
-	/etc/rc.d/init.d/vmailmgrd stop >&2
-fi
+NAME=vmailmgrd; %chkconfig_del
 
 %files
 %defattr(644,root,root,755)
