@@ -7,7 +7,7 @@ License:	GPL
 Source:		http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	vmailmgr.initd
 URL:		http://em.ca/~bruceg/vmailmgr/
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	checkvpw
 
 %description
