@@ -2,11 +2,13 @@ Summary:	Simple virtualizing POP3 password interface
 Summary(pl):	Prosty interfejs wirtualizuj±cy do POP3
 Name:		vmailmgr
 Version:	0.96.9
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
+Group(pt_BR):	Aplicações/Sistema
 Source0:	http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}-qpop.inetd
@@ -14,7 +16,7 @@ Source3:	http://mricon.com/SM/guide/qvcs-guide.html
 URL:		http://em.ca/~bruceg/vmailmgr/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	python-devel >= 2.1.1
+BuildRequires:	python-devel >= 2.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	checkvpw
 
@@ -38,7 +40,9 @@ Summary:	CGI applications for vmailmgr
 Summary(pl):	Aplikacje CGI do vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
+Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
 
@@ -47,15 +51,17 @@ This package contains CGI applications to allow web-based
 administration of vmailmgr systems.
 
 %description cgi -l pl
-Ten pakiet zawiera aplikacje CGI pozwalaj±ce na administracjê
-us³ugami vmailmgr przez WWW.
+Ten pakiet zawiera aplikacje CGI pozwalaj±ce na administracjê us³ugami
+vmailmgr przez WWW.
 
 %package php
 Summary:	PHP applications for vmailmgr
 Summary(pl):	Aplikacje PHP do vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
+Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
 
@@ -64,15 +70,17 @@ This package contains PHP applications to allow web-based
 administration of vmailmgr systems.
 
 %description php -l pl
-Ten pakiet zawiera aplikacje PHP pozwalaj±ce na administracjê
-us³ugami vmailmgr przez WWW.
+Ten pakiet zawiera aplikacje PHP pozwalaj±ce na administracjê us³ugami
+vmailmgr przez WWW.
 
 %package daemon
 Summary:	Vmailmgr daemon for CGIs
 Summary(pl):	Demon vmailmgr dla CGI
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
+Group(pt_BR):	Aplicações/Sistema
 Prereq:		rc-scripts
 Prereq:		/sbin/chkconfig
 
@@ -90,8 +98,10 @@ Summary:	Python modules and CGIs for vmailmgr
 Summary(pl):	Modu³y pythona i CGI do vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
-Requires:	python >= 2.0
+Group(pt_BR):	Aplicações/Sistema
+%requires_eq	python
 Requires:	vmailmgr-daemon = %{version}
 
 %description python
@@ -103,7 +113,9 @@ Summary:	qmail-pop3 config for vmailmgr
 Summary(pl):	Konfiguracja qmail-pop3 dla vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
+Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
 Prereq:		rc-inetd
@@ -121,7 +133,9 @@ Summary:	Config files needed for per-virtual-user quotas for vmailmgr
 Summary(pl):	Pliki konfiguracyjne do quoty dla u¿ytkowników vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
+Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
 
