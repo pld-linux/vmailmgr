@@ -9,6 +9,7 @@ Group(pl):	Aplikacje/System
 Source0:	http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}-qpop.inetd
+Source3:	http://mricon.com/SM/guide/qvcs-guide.html
 URL:		http://em.ca/~bruceg/vmailmgr/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	python
@@ -108,6 +109,7 @@ autoconf
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{var/log/vmailmgrd,etc/{rc.d/init.d,vmailmgr,qmail,sysconfig/rc-inetd}}
+install -d $RPM_BUILD_ROOT/usr/share/doc/%{name}
 
 %python_compile
 %python_compile_opt
@@ -118,6 +120,7 @@ install -d $RPM_BUILD_ROOT/{var/log/vmailmgrd,etc/{rc.d/init.d,vmailmgr,qmail,sy
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/vmailmgrd
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/qpop-vmailmgr
+install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/doc/%{name}/
 
 echo users >$RPM_BUILD_ROOT%{_sysconfdir}/vmailmgr/user-dir
 echo passwd >$RPM_BUILD_ROOT%{_sysconfdir}/vmailmgr/password-file
