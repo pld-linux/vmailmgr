@@ -1,7 +1,7 @@
 Summary:	Simple virtualizing POP3 password interface
 Name:		vmailmgr
 Version:	0.96.9
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
