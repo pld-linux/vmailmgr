@@ -24,7 +24,7 @@ case "$1" in
 	# Check if the service is already running?
         if [ ! -f /var/lock/subsys/vmailmgrd ]; then
 		msg_starting vmailmgrd
-		daemon vmailmgrd
+		daemon "/usr/bin/unixserver /tmp/.vmailmgrd /usr/sbin/vmailmgrd 2>&1 | /var/qmail/bin/splogger mail notice &"
 	        RETVAL=$?
     		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/vmailmgrd
 	else
