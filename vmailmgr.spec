@@ -6,13 +6,15 @@ Version:	0.96.9
 Release:	4
 License:	GPL
 Group:		Applications/System
-Source0:	http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	dd5a34e2b01de73aa8ff1cd8cfd47936
+#Source0:	http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
+#Source0:	http://www.vmailmgr.org/archive/0.96.9/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
+# Source0-md5:	c8d2bb288eeacb799985e8af2c7101c1
 Source1:	%{name}.init
 Source2:	%{name}-qpop.inetd
 Source3:	http://mricon.com/SM/guide/qvcs-guide.html
 # Source3-md5:	7a5c19c12c1b8344f35d506b9c116e4d
-URL:		http://em.ca/~bruceg/vmailmgr/
+#URL:		http://em.ca/~bruceg/vmailmgr/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	python-devel >= 2.2.1
