@@ -13,7 +13,7 @@ Source3:	http://mricon.com/SM/guide/qvcs-guide.html
 URL:		http://em.ca/~bruceg/vmailmgr/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	python-devel >= 2.1
+BuildRequires:	python-devel >= 2.1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	checkvpw
 
