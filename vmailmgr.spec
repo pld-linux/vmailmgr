@@ -128,7 +128,7 @@ u¿ytkowników wirtualnych.
 install %{SOURCE3} doc
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure
 %{__make} all
