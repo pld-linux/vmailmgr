@@ -7,7 +7,9 @@ License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(es):	Aplicaciones/Sistema
+Group(fr):	Aplicaciones/Système
 Group(pl):	Aplikacje/System
+Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
 Source0:	http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
@@ -41,7 +43,9 @@ Summary(pl):	Aplikacje CGI do vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(es):	Aplicaciones/Sistema
+Group(fr):	Aplicaciones/Système
 Group(pl):	Aplikacje/System
+Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
@@ -60,7 +64,9 @@ Summary(pl):	Aplikacje PHP do vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(es):	Aplicaciones/Sistema
+Group(fr):	Aplicaciones/Système
 Group(pl):	Aplikacje/System
+Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
@@ -79,7 +85,9 @@ Summary(pl):	Demon vmailmgr dla CGI
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(es):	Aplicaciones/Sistema
+Group(fr):	Aplicaciones/Système
 Group(pl):	Aplikacje/System
+Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
 Prereq:		rc-scripts
 Prereq:		/sbin/chkconfig
@@ -99,7 +107,9 @@ Summary(pl):	Modu³y pythona i CGI do vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(es):	Aplicaciones/Sistema
+Group(fr):	Aplicaciones/Système
 Group(pl):	Aplikacje/System
+Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
 %requires_eq	python
 Requires:	vmailmgr-daemon = %{version}
@@ -114,7 +124,9 @@ Summary(pl):	Konfiguracja qmail-pop3 dla vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(es):	Aplicaciones/Sistema
+Group(fr):	Aplicaciones/Système
 Group(pl):	Aplikacje/System
+Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
@@ -134,7 +146,9 @@ Summary(pl):	Pliki konfiguracyjne do quoty dla u¿ytkowników vmailmgr
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(es):	Aplicaciones/Sistema
+Group(fr):	Aplicaciones/Système
 Group(pl):	Aplikacje/System
+Group(pt):	Aplicações/Sistema
 Group(pt_BR):	Aplicações/Sistema
 Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
