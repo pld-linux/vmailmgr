@@ -4,7 +4,7 @@ Release:	1
 Group:		Utilities/System
 URL:		http://em.ca/~bruceg/vmailmgr/
 License:	GPL
-Source:		http://em.ca/~bruceg/vmailmgr/archive/%{PACKAGE_VERSION}/%{name}-%{PACKAGE_VERSION}.tar.gz
+Source:		http://em.ca/~bruceg/vmailmgr/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	vmailmgr.initd
 Summary:	Simple virtualizing POP3 password interface
 Packager:	Bruce Guenter <bruceg@em.ca>
@@ -71,11 +71,6 @@ gzip -9nf doc/ChangeLog* AUTHORS COPYING NEWS doc/TODO doc/YEAR2000 doc/*.txt \
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post
-if [ $# -eq 2 -a -f /etc/vmailmgr.conf ]; then
-	vconf2dir /etc/vmailmgr.conf /etc/vmailmgr
-fi
 
 %post daemon
 /sbin/chkconfig --add vmailmgrd
