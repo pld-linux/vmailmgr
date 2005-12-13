@@ -69,8 +69,8 @@ vmailmgr przez WWW.
 Summary:	Vmailmgr daemon for CGIs
 Summary(pl):	Demon vmailmgr dla CGI
 Group:		Applications/System
-PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 
 %description daemon
 This package contains the vmailmgrd daemon that provides virtual
@@ -99,9 +99,9 @@ Ten pakiet zawiera kod vmailmgra napisany w/dla Pythona i jedno CGI.
 Summary:	qmail-pop3 config for vmailmgr
 Summary(pl):	Konfiguracja qmail-pop3 dla vmailmgr
 Group:		Applications/System
-PreReq:		rc-inetd
-Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
+Requires:	rc-inetd
+Requires:	vmailmgr-daemon = %{version}
 
 %description pop3
 This package contains configfiles needed for working with qmail pop3
@@ -115,8 +115,8 @@ pop3 qmaila.
 Summary:	Config files needed for per-virtual-user quotas for vmailmgr
 Summary(pl):	Pliki konfiguracyjne do quoty dla u¿ytkowników vmailmgr
 Group:		Applications/System
-Requires:	vmailmgr-daemon = %{version}
 Requires:	qmail-pop3
+Requires:	vmailmgr-daemon = %{version}
 
 %description quota
 This package contains configfiles needed for working with
@@ -200,7 +200,7 @@ fi
 %doc doc/{ChangeLog*,*.txt} doc/{*.html,*.sgml}
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %dir %{_sysconfdir}/vmailmgr
-%config(missingok noreplace) %verify(not size mtime md5) %{_sysconfdir}/vmailmgr/*
+%config(missingok noreplace) %verify(not md5 mtime size) %{_sysconfdir}/vmailmgr/*
 %{_mandir}/man[1578]/*
 
 %files cgi
@@ -225,7 +225,7 @@ fi
 
 %files pop3
 %defattr(644,root,root,755)
-%config /etc/sysconfig/rc-inetd/qpop-vmailmgr
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-inetd/qpop-vmailmgr
 
 %files quota
 %defattr(644,root,root,755)
