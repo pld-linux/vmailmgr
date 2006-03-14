@@ -17,9 +17,11 @@ Source3:	qvcs-guide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	python-devel >= 2.2.1
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	rpmbuild(macros) >= 1.268
 Obsoletes:	checkvpw
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# TODO: use macros fopm rpm-build-macros
 %define python_sitepkgsdir %(echo `python -c "import sys; print (sys.prefix + '/lib/python' + sys.version[:3] + '/site-packages/')"`)
 %define python_compile_opt python -O -c "import compileall; compileall.compile_dir('.')"
 %define python_compile python -c "import compileall; compileall.compile_dir('.')"
@@ -169,30 +171,20 @@ rm -rf $RPM_BUILD_ROOT
 %post daemon
 /sbin/chkconfig --add vmailmgrd
 touch /var/log/vmailmgrd
-if [ -f /var/lock/subsys/vmailmgrd ]; then
-	/etc/rc.d/init.d/vmailmgrd restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/vmailmgrd start\" to start vmailmgrd daemon."
-fi
+%service vmailmgrd restart "vmailmgrd daemon"
 
 %preun daemon
 if [ "$1" = "0" ];then
-	if [ -r /var/lock/subsys/vmailmgrd ]; then
-		/etc/rc.d/init.d/vmailmgrd stop >&2
-	fi
+	%service vmailmgrd stop
 	/sbin/chkconfig --del vmailmgrd
 fi
 
 %post pop3
-if [ -f /var/lock/subsys/rc-inetd ]; then
-	/etc/rc.d/init.d/rc-inetd reload 1>&2
-else
-	echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start inet server" 1>&2
-fi
+%service -q rc-inetd reload
 
 %postun pop3
-if [ -f /var/lock/subsys/rc-inetd ]; then
-	/etc/rc.d/init.d/rc-inetd reload
+if [ "$1" = 0 ]; then
+	%service -q rc-inetd reload
 fi
 
 %files
