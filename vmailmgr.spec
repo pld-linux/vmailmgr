@@ -1,6 +1,6 @@
 # TODO: webapps? (or /usr/lib/cgi-bin for CGI)
 Summary:	Simple virtualizing POP3 password interface
-Summary(pl):	Prosty interfejs wirtualizuj±cy do POP3
+Summary(pl.UTF-8):   Prosty interfejs wirtualizujÄ…cy do POP3
 Name:		vmailmgr
 Version:	0.96.9
 Release:	4
@@ -33,14 +33,14 @@ qmail-pop3d as well as both a delivery agent to automatically delivery
 mail within a virtual domain and a set of tools to manage such a
 domain.
 
-%description -l pl
-Vmailmgr dostarcza wirtualizuj±cy interfejs sprawdzaj±cy has³a do
-qmail-pop3d oraz program dostarczaj±cy pocztê w domenie wirtualnej i
-zestaw narzêdzi do obs³ugi takiej domeny.
+%description -l pl.UTF-8
+Vmailmgr dostarcza wirtualizujÄ…cy interfejs sprawdzajÄ…cy hasÅ‚a do
+qmail-pop3d oraz program dostarczajÄ…cy pocztÄ™ w domenie wirtualnej i
+zestaw narzÄ™dzi do obsÅ‚ugi takiej domeny.
 
 %package cgi
 Summary:	CGI applications for vmailmgr
-Summary(pl):	Aplikacje CGI do vmailmgr
+Summary(pl.UTF-8):   Aplikacje CGI do vmailmgr
 Group:		Applications/System
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
@@ -49,13 +49,13 @@ Requires:	webserver
 This package contains CGI applications to allow web-based
 administration of vmailmgr systems.
 
-%description cgi -l pl
-Ten pakiet zawiera aplikacje CGI pozwalaj±ce na administracjê us³ugami
+%description cgi -l pl.UTF-8
+Ten pakiet zawiera aplikacje CGI pozwalajÄ…ce na administracjÄ™ usÅ‚ugami
 vmailmgr przez WWW.
 
 %package php
 Summary:	PHP applications for vmailmgr
-Summary(pl):	Aplikacje PHP do vmailmgr
+Summary(pl.UTF-8):   Aplikacje PHP do vmailmgr
 Group:		Applications/System
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
@@ -64,13 +64,13 @@ Requires:	webserver
 This package contains PHP applications to allow web-based
 administration of vmailmgr systems.
 
-%description php -l pl
-Ten pakiet zawiera aplikacje PHP pozwalaj±ce na administracjê us³ugami
+%description php -l pl.UTF-8
+Ten pakiet zawiera aplikacje PHP pozwalajÄ…ce na administracjÄ™ usÅ‚ugami
 vmailmgr przez WWW.
 
 %package daemon
 Summary:	Vmailmgr daemon for CGIs
-Summary(pl):	Demon vmailmgr dla CGI
+Summary(pl.UTF-8):   Demon vmailmgr dla CGI
 Group:		Applications/System
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
@@ -80,13 +80,13 @@ This package contains the vmailmgrd daemon that provides virtual
 domain manipulation services to support unprivileged clients like
 CGIs.
 
-%description daemon -l pl
-Ten pakiet zawiera demona vmailmgrd pozwalaj±cego na manipulacjê
+%description daemon -l pl.UTF-8
+Ten pakiet zawiera demona vmailmgrd pozwalajÄ…cego na manipulacjÄ™
 domenami wirtualnymi nieuprzywilejowanym klientom, takim jak CGI.
 
 %package python
 Summary:	Python modules and CGIs for vmailmgr
-Summary(pl):	Modu³y pythona i CGI do vmailmgr
+Summary(pl.UTF-8):   ModuÅ‚y pythona i CGI do vmailmgr
 Group:		Applications/System
 %pyrequires_eq	python
 Requires:	vmailmgr-daemon = %{version}
@@ -95,12 +95,12 @@ Requires:	vmailmgr-daemon = %{version}
 This package contains vmailmgr code written in/for Python, including
 one CGI.
 
-%description python -l pl
+%description python -l pl.UTF-8
 Ten pakiet zawiera kod vmailmgra napisany w/dla Pythona i jedno CGI.
 
 %package pop3
 Summary:	qmail-pop3 config for vmailmgr
-Summary(pl):	Konfiguracja qmail-pop3 dla vmailmgr
+Summary(pl.UTF-8):   Konfiguracja qmail-pop3 dla vmailmgr
 Group:		Applications/System
 Requires:	qmail-pop3
 Requires:	rc-inetd
@@ -110,13 +110,13 @@ Requires:	vmailmgr-daemon = %{version}
 This package contains configfiles needed for working with qmail pop3
 server.
 
-%description pop3 -l pl
+%description pop3 -l pl.UTF-8
 Ten pakiet zawiera pliki konfiguracyjne potrzebne do pracy z serwerem
 pop3 qmaila.
 
 %package quota
 Summary:	Config files needed for per-virtual-user quotas for vmailmgr
-Summary(pl):	Pliki konfiguracyjne do quoty dla u¿ytkowników vmailmgr
+Summary(pl.UTF-8):   Pliki konfiguracyjne do quoty dla uÅ¼ytkownikÃ³w vmailmgr
 Group:		Applications/System
 Requires:	qmail-pop3
 Requires:	vmailmgr-daemon = %{version}
@@ -125,9 +125,9 @@ Requires:	vmailmgr-daemon = %{version}
 This package contains configfiles needed for working with
 per-virtual-user quotas.
 
-%description quota -l pl
+%description quota -l pl.UTF-8
 Ten pakiet zawiera pliki konfiguracyjne potrzebne do quoty dla
-u¿ytkowników wirtualnych.
+uÅ¼ytkownikÃ³w wirtualnych.
 
 %prep
 %setup -q
