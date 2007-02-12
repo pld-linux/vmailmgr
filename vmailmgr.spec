@@ -1,6 +1,6 @@
 # TODO: webapps? (or /usr/lib/cgi-bin for CGI)
 Summary:	Simple virtualizing POP3 password interface
-Summary(pl.UTF-8):   Prosty interfejs wirtualizujący do POP3
+Summary(pl.UTF-8):	Prosty interfejs wirtualizujący do POP3
 Name:		vmailmgr
 Version:	0.96.9
 Release:	4
@@ -40,7 +40,7 @@ zestaw narzędzi do obsługi takiej domeny.
 
 %package cgi
 Summary:	CGI applications for vmailmgr
-Summary(pl.UTF-8):   Aplikacje CGI do vmailmgr
+Summary(pl.UTF-8):	Aplikacje CGI do vmailmgr
 Group:		Applications/System
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
@@ -55,7 +55,7 @@ vmailmgr przez WWW.
 
 %package php
 Summary:	PHP applications for vmailmgr
-Summary(pl.UTF-8):   Aplikacje PHP do vmailmgr
+Summary(pl.UTF-8):	Aplikacje PHP do vmailmgr
 Group:		Applications/System
 Requires:	vmailmgr-daemon = %{version}
 Requires:	webserver
@@ -70,7 +70,7 @@ vmailmgr przez WWW.
 
 %package daemon
 Summary:	Vmailmgr daemon for CGIs
-Summary(pl.UTF-8):   Demon vmailmgr dla CGI
+Summary(pl.UTF-8):	Demon vmailmgr dla CGI
 Group:		Applications/System
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
@@ -86,7 +86,7 @@ domenami wirtualnymi nieuprzywilejowanym klientom, takim jak CGI.
 
 %package python
 Summary:	Python modules and CGIs for vmailmgr
-Summary(pl.UTF-8):   Moduły pythona i CGI do vmailmgr
+Summary(pl.UTF-8):	Moduły pythona i CGI do vmailmgr
 Group:		Applications/System
 %pyrequires_eq	python
 Requires:	vmailmgr-daemon = %{version}
@@ -100,7 +100,7 @@ Ten pakiet zawiera kod vmailmgra napisany w/dla Pythona i jedno CGI.
 
 %package pop3
 Summary:	qmail-pop3 config for vmailmgr
-Summary(pl.UTF-8):   Konfiguracja qmail-pop3 dla vmailmgr
+Summary(pl.UTF-8):	Konfiguracja qmail-pop3 dla vmailmgr
 Group:		Applications/System
 Requires:	qmail-pop3
 Requires:	rc-inetd
@@ -116,7 +116,7 @@ pop3 qmaila.
 
 %package quota
 Summary:	Config files needed for per-virtual-user quotas for vmailmgr
-Summary(pl.UTF-8):   Pliki konfiguracyjne do quoty dla użytkowników vmailmgr
+Summary(pl.UTF-8):	Pliki konfiguracyjne do quoty dla użytkowników vmailmgr
 Group:		Applications/System
 Requires:	qmail-pop3
 Requires:	vmailmgr-daemon = %{version}
